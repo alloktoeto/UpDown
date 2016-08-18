@@ -1,0 +1,30 @@
+﻿@using UpDown.Models
+@model List<product>
+
+<section class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 main-content">
+                                    <h2 class="title-block">Recommended products</h2>
+
+
+                                    <ul class="row featured-prods-list">
+
+        @foreach (product prod in Model)
+        {
+
+            if (Session["card"]!=null)
+            {
+                if (((List<product>)Session["card"]).Select(x=>x.prodID).Contains(prod.prodID))
+                {
+                    continue;
+                }
+                                    
+            }
+
+            {
+                Html.RenderPartial("ProductPartial", prod);
+            }
+        }
+        </ul>
+
+                                </div>
+                            </section>

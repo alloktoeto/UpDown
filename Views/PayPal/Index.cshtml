@@ -1,0 +1,34 @@
+﻿@using System.Configuration
+@using UpDown.Models
+@model List<ProductViewModel>
+
+@{
+    ViewBag.Title = "Up Down Sound - Payment";
+    Layout = null;
+}
+
+@Scripts.Render("~/Scripts/jquery.js")
+
+<script>
+    $(function () {
+        $('#paymentsFrm').submit();
+    });
+</script>
+
+    <div>
+        <form action="@ConfigurationManager.AppSettings["urlSubmitPayment"]" id="paymentsFrm">
+            <input type="hidden" name="cmd" value="_cart" />
+            <input type="hidden" name="upload" value="1" />
+            <input type="hidden" name="return" value="@ConfigurationManager.AppSettings["urlReturn"]" />
+            <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["accountBusiness"]" />
+
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <input type="hidden" name="@Url.Content("item_name_"+ (i+1))" value="@Model[i].Name" />
+                <input type="hidden" name="@Url.Content("item_number_"+ (i+1))" value="@(i + 1)" />
+                <input type="hidden" name="@Url.Content("amount_" + (i + 1))" value="@Model[i].Price" />
+                <input type="hidden" name="@Url.Content("quantity_" + (i + 1))" value="@Model[i].Quantity" />
+            }
+            
+        </form>
+    </div>

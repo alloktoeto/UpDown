@@ -1,0 +1,59 @@
+﻿@using UpDown.Models
+@model List<product>
+    @{
+    ViewBag.Title = "Up Down Sound - Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    @{
+    int countProducts = 5;
+    }
+    <section class="main-content">
+        <section class="row">
+            <section class="col-xs-12 col-sm-12 col-md-12 filter-top">
+                <header class="filter-header">
+                    <h4>FILTERED BY 
+                        @if (ViewBag.Instrument != null)
+                        {
+                            <span>INSTRUMENTS</span>
+                        }
+                        
+                        @if (ViewBag.Format != null)
+                        {
+                            <span>FORMATS</span>
+                        }
+                        
+                        @if (ViewBag.Effect != null)
+                        {
+                            <span>EFFECTS</span>
+                        }
+                        
+                        @if (ViewBag.Genre != null)
+                        {
+                            <span>GENRES</span>
+                        } 
+                    </h4>
+                </header>
+                <section class="filter-body">
+                    <div class="col-xs-6 col-sm-6 col-md-3">
+                        <h3></h3>
+                        <ul>
+                            <li><a href ="#">All-In-One</a></li>
+                            <li><a href ="#">Bass</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-3">
+                        <h3></h3>
+                        <ul>
+                            <li><a href ="#">Beatbox</a></li>
+                            <li><a href ="#">Brass</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-3">
+                        <h3></h3>
+                        <ul>
+                            <li><a href ="#">Drums</a></li>
+                        </ul>
+                    </div>
+                </section>
+        </section>
+    </section>

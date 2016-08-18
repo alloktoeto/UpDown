@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_9FCBDB_UpDownDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="DB_9FCBDB_UpDownDBModelStoreContainer">
+    <EntitySet Name="articles" EntityType="DB_9FCBDB_UpDownDBModel.Store.articles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="authors" EntityType="DB_9FCBDB_UpDownDBModel.Store.authors" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="carusel_images" EntityType="DB_9FCBDB_UpDownDBModel.Store.carusel_images" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="countries" EntityType="DB_9FCBDB_UpDownDBModel.Store.countries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="currencies" EntityType="DB_9FCBDB_UpDownDBModel.Store.currencies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="downloads" EntityType="DB_9FCBDB_UpDownDBModel.Store.downloads" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="effects" EntityType="DB_9FCBDB_UpDownDBModel.Store.effects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="formats" EntityType="DB_9FCBDB_UpDownDBModel.Store.formats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="formatsToProducts" EntityType="DB_9FCBDB_UpDownDBModel.Store.formatsToProducts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="genres" EntityType="DB_9FCBDB_UpDownDBModel.Store.genres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="instruments" EntityType="DB_9FCBDB_UpDownDBModel.Store.instruments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="instrumentsToProducts" EntityType="DB_9FCBDB_UpDownDBModel.Store.instrumentsToProducts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="languages" EntityType="DB_9FCBDB_UpDownDBModel.Store.languages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="menus" EntityType="DB_9FCBDB_UpDownDBModel.Store.menus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="pages" EntityType="DB_9FCBDB_UpDownDBModel.Store.pages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="pictures" EntityType="DB_9FCBDB_UpDownDBModel.Store.pictures" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="product_statuses" EntityType="DB_9FCBDB_UpDownDBModel.Store.product_statuses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="products" EntityType="DB_9FCBDB_UpDownDBModel.Store.products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sounds" EntityType="DB_9FCBDB_UpDownDBModel.Store.sounds" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubGenres" EntityType="DB_9FCBDB_UpDownDBModel.Store.SubGenres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="subGenresToProducts" EntityType="DB_9FCBDB_UpDownDBModel.Store.subGenresToProducts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tags" EntityType="DB_9FCBDB_UpDownDBModel.Store.tags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="transactions" EntityType="DB_9FCBDB_UpDownDBModel.Store.transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="DB_9FCBDB_UpDownDBModel.Store.users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_countries_languages" Association="DB_9FCBDB_UpDownDBModel.Store.FK_countries_languages">
+      <End Role="languages" EntitySet="languages" />
+      <End Role="countries" EntitySet="countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_currencies_countries" Association="DB_9FCBDB_UpDownDBModel.Store.FK_currencies_countries">
+      <End Role="countries" EntitySet="countries" />
+      <End Role="currencies" EntitySet="currencies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_downloads_formats" Association="DB_9FCBDB_UpDownDBModel.Store.FK_downloads_formats">
+      <End Role="formats" EntitySet="formats" />
+      <End Role="downloads" EntitySet="downloads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_downloads_products" Association="DB_9FCBDB_UpDownDBModel.Store.FK_downloads_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="downloads" EntitySet="downloads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_downloads_users" Association="DB_9FCBDB_UpDownDBModel.Store.FK_downloads_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="downloads" EntitySet="downloads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_formatsToProducts_formats" Association="DB_9FCBDB_UpDownDBModel.Store.FK_formatsToProducts_formats">
+      <End Role="formats" EntitySet="formats" />
+      <End Role="formatsToProducts" EntitySet="formatsToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_formatsToProducts_products" Association="DB_9FCBDB_UpDownDBModel.Store.FK_formatsToProducts_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="formatsToProducts" EntitySet="formatsToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_instrumentsToProducts_instruments" Association="DB_9FCBDB_UpDownDBModel.Store.FK_instrumentsToProducts_instruments">
+      <End Role="instruments" EntitySet="instruments" />
+      <End Role="instrumentsToProducts" EntitySet="instrumentsToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_instrumentsToProducts_products" Association="DB_9FCBDB_UpDownDBModel.Store.FK_instrumentsToProducts_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="instrumentsToProducts" EntitySet="instrumentsToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_authors" Association="DB_9FCBDB_UpDownDBModel.Store.FK_products_authors">
+      <End Role="authors" EntitySet="authors" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_effects" Association="DB_9FCBDB_UpDownDBModel.Store.FK_products_effects">
+      <End Role="effects" EntitySet="effects" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_product_statuses" Association="DB_9FCBDB_UpDownDBModel.Store.FK_products_product_statuses">
+      <End Role="product_statuses" EntitySet="product_statuses" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_sounds" Association="DB_9FCBDB_UpDownDBModel.Store.FK_products_sounds">
+      <End Role="sounds" EntitySet="sounds" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubGenres_genres" Association="DB_9FCBDB_UpDownDBModel.Store.FK_SubGenres_genres">
+      <End Role="genres" EntitySet="genres" />
+      <End Role="SubGenres" EntitySet="SubGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subGenresToProducts_products" Association="DB_9FCBDB_UpDownDBModel.Store.FK_subGenresToProducts_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="subGenresToProducts" EntitySet="subGenresToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subGenresToProducts_SubGenres" Association="DB_9FCBDB_UpDownDBModel.Store.FK_subGenresToProducts_SubGenres">
+      <End Role="SubGenres" EntitySet="SubGenres" />
+      <End Role="subGenresToProducts" EntitySet="subGenresToProducts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="articles">
+    <Key>
+      <PropertyRef Name="articleID" />
+    </Key>
+    <Property Name="articleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="txt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="dateUpload" Type="datetime" />
+    <Property Name="dateUpdate" Type="datetime" />
+    <Property Name="authorID" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="page" Type="int" />
+    <Property Name="view" Type="bit" />
+  </EntityType>
+  <EntityType Name="authors">
+    <Key>
+      <PropertyRef Name="authorID" />
+    </Key>
+    <Property Name="authorID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="carusel_images">
+    <Key>
+      <PropertyRef Name="imageID" />
+    </Key>
+    <Property Name="imageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="url" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="alt" Type="nvarchar" MaxLength="50" />
+    <Property Name="text" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="countries">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="languageID" Type="int" />
+  </EntityType>
+  <EntityType Name="currencies">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="countryID" Type="int" />
+    <Property Name="icon" Type="nvarchar" MaxLength="50" />
+    <Property Name="gate" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="shortName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="downloads">
+    <Key>
+      <PropertyRef Name="downloadID" />
+    </Key>
+    <Property Name="downloadID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="userID" Type="uniqueidentifier" />
+    <Property Name="productId" Type="uniqueidentifier" />
+    <Property Name="count" Type="int" />
+    <Property Name="format" Type="int" />
+    <Property Name="link" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="effects">
+    <Key>
+      <PropertyRef Name="effectID" />
+    </Key>
+    <Property Name="effectID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="formats">
+    <Key>
+      <PropertyRef Name="formatID" />
+    </Key>
+    <Property Name="formatID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="formatsToProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="product_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="format_Id" Type="int" Nullable="false" />
+    <Property Name="file_name" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="genres">
+    <Key>
+      <PropertyRef Name="genreID" />
+    </Key>
+    <Property Name="genreID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="instruments">
+    <Key>
+      <PropertyRef Name="instrumentID" />
+    </Key>
+    <Property Name="instrumentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="instrumentsToProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="instrumentId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="languages">
+    <Key>
+      <PropertyRef Name="languageID" />
+    </Key>
+    <Property Name="languageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="nvarchar" MaxLength="5" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="menus">
+    <Key>
+      <PropertyRef Name="menuID" />
+    </Key>
+    <Property Name="menuID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="show" Type="bit" />
+    <Property Name="action" Type="nvarchar" MaxLength="50" />
+    <Property Name="controller" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="pages">
+    <Key>
+      <PropertyRef Name="pageID" />
+    </Key>
+    <Property Name="pageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="txt" Type="nvarchar(max)" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="pictures">
+    <Key>
+      <PropertyRef Name="pictureID" />
+    </Key>
+    <Property Name="pictureID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="category" Type="int" />
+  </EntityType>
+  <EntityType Name="product_statuses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="cl" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="prodID" />
+    </Key>
+    <Property Name="prodID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="authorID" Type="int" />
+    <Property Name="soundID" Type="int" />
+    <Property Name="dateUpload" Type="datetime2" />
+    <Property Name="size" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="url" Type="nvarchar(max)" />
+    <Property Name="downloads" Type="int" />
+    <Property Name="views" Type="int" />
+    <Property Name="price" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="price_New" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="prod_status" Type="int" />
+    <Property Name="prod_rating" Type="int" />
+    <Property Name="effectId" Type="int" />
+    <Property Name="isRecommeded" Type="bit" Nullable="false" />
+    <Property Name="prod_image" Type="nvarchar" MaxLength="255" />
+    <Property Name="duration" Type="int" />
+    <Property Name="isDisplayed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sounds">
+    <Key>
+      <PropertyRef Name="soundID" />
+    </Key>
+    <Property Name="soundID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SubGenres">
+    <Key>
+      <PropertyRef Name="subGenreId" />
+    </Key>
+    <Property Name="subGenreId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="subGenreName" Type="nvarchar" MaxLength="100" />
+    <Property Name="subGenreGenreId" Type="int" />
+  </EntityType>
+  <EntityType Name="subGenresToProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="subGenreId" Type="int" Nullable="false" />
+    <Property Name="productId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tags">
+    <Key>
+      <PropertyRef Name="tagId" />
+    </Key>
+    <Property Name="tagId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="url" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="transactions">
+    <Key>
+      <PropertyRef Name="transId" />
+    </Key>
+    <Property Name="transId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="tx" Type="nvarchar" MaxLength="255" />
+    <Property Name="GrossTotal" Type="decimal" Scale="2" />
+    <Property Name="InvoiceNumber" Type="int" />
+    <Property Name="PaymentStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="PayerFirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PayerLastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PaymentFee" Type="decimal" Scale="2" />
+    <Property Name="BusinessEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="ReceiverEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="PayerEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="TxToken" Type="nvarchar" MaxLength="100" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Currency" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransactionId" Type="nvarchar" MaxLength="100" />
+    <Property Name="SubscriberId" Type="nvarchar" MaxLength="100" />
+    <Property Name="Custom" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="firstname" Type="nvarchar" MaxLength="50" />
+    <Property Name="lastname" Type="nvarchar" MaxLength="50" />
+    <Property Name="birthdate" Type="datetime" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone2" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="dateRegistry" Type="datetime" />
+    <Property Name="lastAuth" Type="datetime" />
+    <Property Name="idAdmin" Type="bit" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="isSuccessInSite" Type="bit" />
+    <Property Name="from" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <Association Name="FK_countries_languages">
+    <End Role="languages" Type="DB_9FCBDB_UpDownDBModel.Store.languages" Multiplicity="0..1" />
+    <End Role="countries" Type="DB_9FCBDB_UpDownDBModel.Store.countries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="languages">
+        <PropertyRef Name="languageID" />
+      </Principal>
+      <Dependent Role="countries">
+        <PropertyRef Name="languageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_currencies_countries">
+    <End Role="countries" Type="DB_9FCBDB_UpDownDBModel.Store.countries" Multiplicity="0..1" />
+    <End Role="currencies" Type="DB_9FCBDB_UpDownDBModel.Store.currencies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="countries">
+        <PropertyRef Name="code" />
+      </Principal>
+      <Dependent Role="currencies">
+        <PropertyRef Name="countryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_downloads_formats">
+    <End Role="formats" Type="DB_9FCBDB_UpDownDBModel.Store.formats" Multiplicity="0..1" />
+    <End Role="downloads" Type="DB_9FCBDB_UpDownDBModel.Store.downloads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="formats">
+        <PropertyRef Name="formatID" />
+      </Principal>
+      <Dependent Role="downloads">
+        <PropertyRef Name="format" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_downloads_products">
+    <End Role="products" Type="DB_9FCBDB_UpDownDBModel.Store.products" Multiplicity="0..1" />
+    <End Role="downloads" Type="DB_9FCBDB_UpDownDBModel.Store.downloads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="prodID" />
+      </Principal>
+      <Dependent Role="downloads">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_downloads_users">
+    <End Role="users" Type="DB_9FCBDB_UpDownDBModel.Store.users" Multiplicity="0..1" />
+    <End Role="downloads" Type="DB_9FCBDB_UpDownDBModel.Store.downloads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="downloads">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_formatsToProducts_formats">
+    <End Role="formats" Type="DB_9FCBDB_UpDownDBModel.Store.formats" Multiplicity="1" />
+    <End Role="formatsToProducts" Type="DB_9FCBDB_UpDownDBModel.Store.formatsToProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="formats">
+        <PropertyRef Name="formatID" />
+      </Principal>
+      <Dependent Role="formatsToProducts">
+        <PropertyRef Name="format_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_formatsToProducts_products">
+    <End Role="products" Type="DB_9FCBDB_UpDownDBModel.Store.products" Multiplicity="1" />
+    <End Role="formatsToProducts" Type="DB_9FCBDB_UpDownDBModel.Store.formatsToProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="prodID" />
+      </Principal>
+      <Dependent Role="formatsToProducts">
+        <PropertyRef Name="product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_instrumentsToProducts_instruments">
+    <End Role="instruments" Type="DB_9FCBDB_UpDownDBModel.Store.instruments" Multiplicity="1" />
+    <End Role="instrumentsToProducts" Type="DB_9FCBDB_UpDownDBModel.Store.instrumentsToProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="instruments">
+        <PropertyRef Name="instrumentID" />
+      </Principal>
+      <Dependent Role="instrumentsToProducts">
+        <PropertyRef Name="instrumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_instrumentsToProducts_products">
+    <End Role="products" Type="DB_9FCBDB_UpDownDBModel.Store.products" Multiplicity="1" />
+    <End Role="instrumentsToProducts" Type="DB_9FCBDB_UpDownDBModel.Store.instrumentsToProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="prodID" />
+      </Principal>
+      <Dependent Role="instrumentsToProducts">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_authors">
+    <End Role="authors" Type="DB_9FCBDB_UpDownDBModel.Store.authors" Multiplicity="0..1" />
+    <End Role="products" Type="DB_9FCBDB_UpDownDBModel.Store.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="authors">
+        <PropertyRef Name="authorID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="authorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_effects">
+    <End Role="effects" Type="DB_9FCBDB_UpDownDBModel.Store.effects" Multiplicity="0..1" />
+    <End Role="products" Type="DB_9FCBDB_UpDownDBModel.Store.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="effects">
+        <PropertyRef Name="effectID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="effectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_product_statuses">
+    <End Role="product_statuses" Type="DB_9FCBDB_UpDownDBModel.Store.product_statuses" Multiplicity="0..1" />
+    <End Role="products" Type="DB_9FCBDB_UpDownDBModel.Store.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product_statuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="prod_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_sounds">
+    <End Role="sounds" Type="DB_9FCBDB_UpDownDBModel.Store.sounds" Multiplicity="0..1" />
+    <End Role="products" Type="DB_9FCBDB_UpDownDBModel.Store.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sounds">
+        <PropertyRef Name="soundID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="soundID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubGenres_genres">
+    <End Role="genres" Type="DB_9FCBDB_UpDownDBModel.Store.genres" Multiplicity="0..1" />
+    <End Role="SubGenres" Type="DB_9FCBDB_UpDownDBModel.Store.SubGenres" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genres">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="SubGenres">
+        <PropertyRef Name="subGenreGenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subGenresToProducts_products">
+    <End Role="products" Type="DB_9FCBDB_UpDownDBModel.Store.products" Multiplicity="1" />
+    <End Role="subGenresToProducts" Type="DB_9FCBDB_UpDownDBModel.Store.subGenresToProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="prodID" />
+      </Principal>
+      <Dependent Role="subGenresToProducts">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subGenresToProducts_SubGenres">
+    <End Role="SubGenres" Type="DB_9FCBDB_UpDownDBModel.Store.SubGenres" Multiplicity="1" />
+    <End Role="subGenresToProducts" Type="DB_9FCBDB_UpDownDBModel.Store.subGenresToProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubGenres">
+        <PropertyRef Name="subGenreId" />
+      </Principal>
+      <Dependent Role="subGenresToProducts">
+        <PropertyRef Name="subGenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'DB_9FCBDB_UpDownDB.dbo.GlobalParametres' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="GlobalParametres">
+        <Property Name="glob_name" Type="nvarchar" MaxLength="50" />
+        <Property Name="glob_value" Type="nvarchar" MaxLength="50" />
+      </EntityType>-->
+</Schema>

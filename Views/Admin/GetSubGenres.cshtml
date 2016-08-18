@@ -1,0 +1,26 @@
+﻿ @using UpDown.Models
+ @model List<genre>
+
+
+ <script>
+     $(function () {
+         $("#subgenres").dropdownchecklist({
+             emptyText: '-- Select Sub Genre',
+             icon: {
+                 placement: 'right'
+             }
+         });
+     });
+ </script>
+ 
+ <div class="format-select-wrap">
+                                                    <select id="subgenres" name="subgenres" class="format-select" multiple="multiple">
+                                                        @foreach (genre g in Model)
+                                                        { 
+                                                                foreach (SubGenre sg in g.SubGenres)
+                                                                {
+                                                                    <option genre-val="@g.genreID" value="@sg.subGenreId">@sg.subGenreName</option>
+                                                                }
+                                                        }
+                                                    </select>
+                                                </div>

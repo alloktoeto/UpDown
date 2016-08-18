@@ -1,0 +1,303 @@
+﻿@using UpDown.Models
+@model List<product>
+@{
+    ViewBag.Title = "Up Down Sound - Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    int countProducts = 5;
+    }
+<section class="main-content">
+                        <section class="row">
+                            <section class="col-xs-12 col-sm-12 col-md-12 filter-top">
+                                <header class="filter-header">
+
+                                    <h4>FILTER: </h4>
+                                    <div class="filter-selected-wrap">
+                                    @if (ViewBag.Instrument != null)
+                                    { 
+                                        <div class="selected-item">
+                                            <p>@(((List<instrument>)ViewBag.Instruments).FirstOrDefault(x => x.instrumentID == ViewBag.Instrument).name)</p>
+                                            <a href="@Url.Action("Filter", "Products", new { format = ViewBag.Format, effect = ViewBag.Effect, genre = ViewBag.Genre })" class="fa fa-times" onclick="loader(true);" title="Remove"></a>
+                                        </div> 
+                                    }
+                                    
+                                    @if (ViewBag.Format != null)
+                                    {
+                                        <div class="selected-item">
+                                            <p>@(((List<format>)ViewBag.Formats).FirstOrDefault(x => x.formatID == ViewBag.Format).name)</p>
+                                            <a href="@Url.Action("Filter", "Products", new { instrument = ViewBag.Instrument, effect = ViewBag.Effect, genre = ViewBag.Genre })" class="fa fa-times" onclick="loader(true);" title="Remove"></a>
+                                        </div> 
+                                    }
+                                    
+                                    @if (ViewBag.Effect != null)
+                                    {
+                                        <div class="selected-item">
+                                            <p>@(((List<effect>)ViewBag.Effects).FirstOrDefault(x => x.effectID == ViewBag.Effect).name)</p>
+                                            <a href="@Url.Action("Filter", "Products", new { format = ViewBag.Format, instrument = ViewBag.Instrument, genre = ViewBag.Genre })" class="fa fa-times" onclick="loader(true);" title="Remove"></a>
+                                        </div>  
+                                    }
+                                    
+                                    @if (ViewBag.Genre != null)
+                                    {
+                                        <div class="selected-item">
+                                            <p>@(((List<genre>)ViewBag.Genres).FirstOrDefault(x=>x.genreID==ViewBag.Genre).name)</p>
+                                            <a href="@Url.Action("Filter", "Products", new { format = ViewBag.Format, instrument = ViewBag.Instrument, effect = ViewBag.Effect })" class="fa fa-times" onclick="loader(true);" title="Remove"></a>
+                                        </div> 
+                                    }                                
+                                    </div>
+
+                                </header>
+                                <section class="filter-body">
+                                    @if (ViewBag.Instrument == null)
+                                    {
+                                        <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <h3>Instruments</h3>
+                                        <ul>
+                                         @{
+                                        int count = 0;
+                                            }
+                                            @foreach (instrument item in ViewBag.Instruments)
+                                            {
+                                                <li><a href ="@Url.Action("Filter", "Products", new { format = ViewBag.Format, instrument = item.instrumentID, effect = ViewBag.Effect, genre = ViewBag.Genre })" onclick="loader(true);">@item.name</a></li>
+                                                count++;
+                                                if (count >= countProducts)
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                            
+                                        </ul>
+                                        @if (((List<instrument>)ViewBag.Instruments).Count > countProducts)
+                                        {
+                                            <a href="#" class="btn-more" data-toggle="modal" data-target="#ModalMoreInstruments">More...</a>
+                                        }
+                                        
+                                        </div>
+                                    }
+                                        
+                                    @if (ViewBag.Format == null)
+                                    {
+                                        <div class="col-xs-6 col-sm-6 col-md-3">
+                                        <h3>Formats</h3>
+                                        <ul>
+                                        @{
+                                        int count = 0;
+                                            }
+                                        @foreach (format item in ViewBag.Formats)
+                                        {
+                                                <li><a href ="@Url.Action("Filter", "Products", new { format = item.formatID, instrument = ViewBag.Instrument, effect = ViewBag.Effect, genre = ViewBag.Genre })" onclick="loader(true);">@item.name</a></li>
+                                            count++;
+                                            if (count >= countProducts)
+                                            {
+                                                break;
+                                            }
+                                        }
+                                            
+                                        </ul>
+                                        @if (((List<format>)ViewBag.Formats).Count > countProducts)
+                                        {
+                                            <a href="#" class="btn-more" data-toggle="modal" data-target="#ModalMoreFormats">More...</a>
+                                        }
+                                        
+                                        </div>
+                                    }
+                                    
+                                    @if (ViewBag.Effect == null)
+                                    {
+                                        <div class="col-xs-6 col-sm-6 col-md-3">
+                                            <h3>Presets</h3>
+                                            <ul>
+                                            @{
+                                        int count = 0;
+                                            }
+                                                @foreach (effect item in ViewBag.Effects)
+                                                {
+                                                    <li><a href="@Url.Action("Filter", "Products", new { format = ViewBag.Format, instrument = ViewBag.Instrument, effect = item.effectID, genre = ViewBag.Genre })" onclick="loader(true);">@item.name</a></li>
+                                                    count++;
+                                                    if (count >= countProducts)
+                                                    {
+                                                        break;
+                                                    }
+                                                }
+                                            </ul>
+                                             @if (((List<effect>)ViewBag.Effects).Count > countProducts)
+                                             {
+                                                <a href="#" class="btn-more" data-toggle="modal" data-target="#ModalMoreEffects">More...</a>
+                                             }
+                                        </div>
+                                    }
+
+                                    @if (ViewBag.Genre == null)
+                                    {
+                                        <div class="col-xs-6 col-sm-6 col-md-3">
+                                            <h3>Genres</h3>
+                                            <ul>
+                                            @{
+                                        int count = 0;
+                                            }
+                                                @foreach (genre item in ViewBag.Genres)
+                                                {
+                                                    <li><a href="@Url.Action("Filter", "Products", new { format = ViewBag.Format, instrument = ViewBag.Instrument, effect = ViewBag.Effect, genre = item.genreID })" onclick="loader(true);">@item.name</a></li>
+                                                    count++;
+                                                    if (count >= countProducts)
+                                                    {
+                                                        break;
+                                                    }
+                                                }
+                                            </ul>
+                                             @if (((List<genre>)ViewBag.Genres).Count > countProducts)
+                                             {
+                                                <a href="#" class="btn-more" data-toggle="modal" data-target="#ModalMoreGenres">More...</a>
+                                             }
+                                        </div>
+                                    }
+
+                                    <!-- More products modal -->
+                                    <div class="modal fade" id="ModalMoreInstruments" tabindex="-1" role="dialog" aria-labelledby="ModalMoreProducts">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title">Instruments</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul class="more-products-wrap">
+                                                        @foreach (instrument item in ViewBag.Instruments)
+                                                        {
+                                                            <li>
+                                                                <a href="@Url.Action("Filter", "Products", new { format = ViewBag.Format, instrument = item.instrumentID, effect = ViewBag.Effect, genre = ViewBag.Genre })" onclick="loader(true);">
+                                                                    @item.name
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /More products modal-->
+
+                                    <div class="modal fade" id="ModalMoreFormats" tabindex="-1" role="dialog" aria-labelledby="ModalMoreFormats">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title">Formats</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul class="more-products-wrap">
+                                                        @foreach (format item in ViewBag.Formats)
+                                                        {
+                                                            <li>
+                                                                <a href="@Url.Action("Filter", "Products", new { format = item.formatID, instrument = ViewBag.Instrument, effect = ViewBag.Effect, genre = ViewBag.Genre })" onclick="loader(true);">
+                                                                    @item.name
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="ModalMoreGenres" tabindex="-1" role="dialog" aria-labelledby="ModalMoreProducts">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title">Genres</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul class="more-products-wrap">
+                                                        @foreach (genre item in ViewBag.Genres)
+                                                        {
+                                                            <li>
+                                                                <a href="@Url.Action("Filter", "Products", new { format = ViewBag.Format, instrument = ViewBag.Instrument, effect = ViewBag.Effect, genre = item.genreID })" onclick="loader(true);">
+                                                                    @item.name
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal fade" id="ModalMoreEffects" tabindex="-1" role="dialog" aria-labelledby="ModalMoreProducts">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title">Presets</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul class="more-products-wrap">
+                                                        @foreach (effect item in ViewBag.Effects)
+                                                        {
+                                                            <li>
+                                                                <a href="@Url.Action("Filter", "Products", new { format = ViewBag.Format, instrument = ViewBag.Instrument, effect = item.effectID, genre = ViewBag.Genre })" onclick="loader(true);">
+                                                                    @item.name
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section> <!--end .filter-top-->
+                            
+
+                            @if (Model == null || Model.Count == 0)
+                            {
+                             <section class="main-content">
+                                <section class="row" style="padding:1vw;">
+                                    <div class="cart-row">
+                                        <div class="col-md-12">
+                                            <span>No products to display</span>
+                                        </div>
+                                    </div>
+                                </section>
+                             </section>   
+                            }
+                            else
+                            {
+                            <section class="row">
+                               
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <h2 class="title-block">Our products</h2>
+
+
+                                    <ul class="row featured-prods-list">
+
+        @foreach (product prod in Model)
+        {
+            {
+                Html.RenderPartial("ProductPartial", prod);
+            }
+        }
+        </ul>
+
+                                </div>
+                            </section>
+                            
+                            }
+
+                            
+                            @Html.Action("RecommendedProducts", "Products")
+                        
+                        </section>
+                    </section> <!-- main content -->

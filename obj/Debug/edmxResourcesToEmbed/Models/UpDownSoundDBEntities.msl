@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UpDownDBModelStoreContainer" CdmEntityContainer="UpDownDBEntities1">
+    <EntitySetMapping Name="articles">
+      <EntityTypeMapping TypeName="UpDownDBModel.article">
+        <MappingFragment StoreEntitySet="articles">
+          <ScalarProperty Name="articleID" ColumnName="articleID" />
+          <ScalarProperty Name="txt" ColumnName="txt" />
+          <ScalarProperty Name="dateUpload" ColumnName="dateUpload" />
+          <ScalarProperty Name="dateUpdate" ColumnName="dateUpdate" />
+          <ScalarProperty Name="authorID" ColumnName="authorID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="page" ColumnName="page" />
+          <ScalarProperty Name="view" ColumnName="view" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="authors">
+      <EntityTypeMapping TypeName="UpDownDBModel.author">
+        <MappingFragment StoreEntitySet="authors">
+          <ScalarProperty Name="authorID" ColumnName="authorID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="carusel_images">
+      <EntityTypeMapping TypeName="UpDownDBModel.carusel_images">
+        <MappingFragment StoreEntitySet="carusel_images">
+          <ScalarProperty Name="imageID" ColumnName="imageID" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="alt" ColumnName="alt" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="countries">
+      <EntityTypeMapping TypeName="UpDownDBModel.country">
+        <MappingFragment StoreEntitySet="countries">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="languageID" ColumnName="languageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="currencies">
+      <EntityTypeMapping TypeName="UpDownDBModel.currency">
+        <MappingFragment StoreEntitySet="currencies">
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="countryID" ColumnName="countryID" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="gate" ColumnName="gate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="downloads">
+      <EntityTypeMapping TypeName="UpDownDBModel.download">
+        <MappingFragment StoreEntitySet="downloads">
+          <ScalarProperty Name="downloadID" ColumnName="downloadID" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="effects">
+      <EntityTypeMapping TypeName="UpDownDBModel.effect">
+        <MappingFragment StoreEntitySet="effects">
+          <ScalarProperty Name="effectID" ColumnName="effectID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="formats">
+      <EntityTypeMapping TypeName="UpDownDBModel.format">
+        <MappingFragment StoreEntitySet="formats">
+          <ScalarProperty Name="formatID" ColumnName="formatID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genres">
+      <EntityTypeMapping TypeName="UpDownDBModel.genre">
+        <MappingFragment StoreEntitySet="genres">
+          <ScalarProperty Name="genreID" ColumnName="genreID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="instruments">
+      <EntityTypeMapping TypeName="UpDownDBModel.instrument">
+        <MappingFragment StoreEntitySet="instruments">
+          <ScalarProperty Name="instrumentID" ColumnName="instrumentID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="languages">
+      <EntityTypeMapping TypeName="UpDownDBModel.language">
+        <MappingFragment StoreEntitySet="languages">
+          <ScalarProperty Name="languageID" ColumnName="languageID" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="menus">
+      <EntityTypeMapping TypeName="UpDownDBModel.menu">
+        <MappingFragment StoreEntitySet="menus">
+          <ScalarProperty Name="menuID" ColumnName="menuID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="show" ColumnName="show" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="controller" ColumnName="controller" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pages">
+      <EntityTypeMapping TypeName="UpDownDBModel.page">
+        <MappingFragment StoreEntitySet="pages">
+          <ScalarProperty Name="pageID" ColumnName="pageID" />
+          <ScalarProperty Name="txt" ColumnName="txt" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pictures">
+      <EntityTypeMapping TypeName="UpDownDBModel.picture">
+        <MappingFragment StoreEntitySet="pictures">
+          <ScalarProperty Name="pictureID" ColumnName="pictureID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="category" ColumnName="category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="product_statuses">
+      <EntityTypeMapping TypeName="UpDownDBModel.product_statuses">
+        <MappingFragment StoreEntitySet="product_statuses">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="cl" ColumnName="cl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="UpDownDBModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="prodID" ColumnName="prodID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="authorID" ColumnName="authorID" />
+          <ScalarProperty Name="instrumentID" ColumnName="instrumentID" />
+          <ScalarProperty Name="genreID" ColumnName="genreID" />
+          <ScalarProperty Name="soundID" ColumnName="soundID" />
+          <ScalarProperty Name="dateUpload" ColumnName="dateUpload" />
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="downloads" ColumnName="downloads" />
+          <ScalarProperty Name="views" ColumnName="views" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="price_New" ColumnName="price_New" />
+          <ScalarProperty Name="pictureID" ColumnName="pictureID" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="effectID" ColumnName="effectID" />
+          <ScalarProperty Name="prod_status" ColumnName="prod_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sounds">
+      <EntityTypeMapping TypeName="UpDownDBModel.sound">
+        <MappingFragment StoreEntitySet="sounds">
+          <ScalarProperty Name="soundID" ColumnName="soundID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubGenres">
+      <EntityTypeMapping TypeName="UpDownDBModel.SubGenre">
+        <MappingFragment StoreEntitySet="SubGenres">
+          <ScalarProperty Name="subGenreId" ColumnName="subGenreId" />
+          <ScalarProperty Name="subGenreName" ColumnName="subGenreName" />
+          <ScalarProperty Name="subGenreGenreId" ColumnName="subGenreGenreId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transactions">
+      <EntityTypeMapping TypeName="UpDownDBModel.transaction">
+        <MappingFragment StoreEntitySet="transactions">
+          <ScalarProperty Name="transID" ColumnName="transID" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="gross" ColumnName="gross" />
+          <ScalarProperty Name="token" ColumnName="token" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="UpDownDBModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="dateRegistry" ColumnName="dateRegistry" />
+          <ScalarProperty Name="lastAuth" ColumnName="lastAuth" />
+          <ScalarProperty Name="idAdmin" ColumnName="idAdmin" />
+          <ScalarProperty Name="username" ColumnName="username" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="formatsToProducts" TypeName="UpDownDBModel.formatsToProducts" StoreEntitySet="formatsToProducts">
+      <EndProperty Name="formats">
+        <ScalarProperty Name="formatID" ColumnName="format_Id" />
+      </EndProperty>
+      <EndProperty Name="products">
+        <ScalarProperty Name="prodID" ColumnName="product_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

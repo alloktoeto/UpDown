@@ -1,0 +1,103 @@
+﻿@using UpDown.Models
+@model UpDown.Models.product
+
+@{
+    ViewBag.Title = "EditFormats";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script>
+    $(function () {
+        $(".btn-success").click(function () {
+            loader(true);
+        });
+    });
+</script>
+
+<section class="main-content">
+                    <section class="row">
+                        <section class="col-md-12 panel products-wrap bgc-wrap">
+                            <section class="panel-header">
+                                <h3 class="header-title"></h3>
+                            </section>
+                            <section class="panel-body">
+                                <section class="action-bar">
+                                    
+                                    <button class="btn btn-success" onclick="javascript:window.location.href = '@Url.Action("ProductsNull", "Admin")'">
+                                        <i class="fa fa-times"></i> Finish
+                                    </button>
+                                </section>
+                                <section class="row">
+                                    
+                                     <section class="col-md-6">
+                                       
+                                    <section class="row">
+                                    @Html.HiddenFor(x=>Model.prodID)
+                                    </section>
+                                        
+                                        <section class="row formats-wrap">
+                                                <section class="col-md-12">
+                                                    <label>Formats</label>
+                                                </section>
+
+                                                @foreach (format format in ViewBag.Formats)
+                                                {
+                                                    if (Model.formatsToProducts.Select(x=>x.format_Id).Contains(format.formatID))
+                                                    {
+                                                        using (Html.BeginForm("DeleteFileFromProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                        { 
+                                                            <section class="form-group">
+                                                                <input type="hidden" name="formatId" value="@format.formatID" />
+                                                                <input type="hidden" name="productId" value="@ViewBag.ProductId" />
+
+                                                                <section class="col-md-3 to-right">
+                                                                    <span>@format.name</span>
+                                                                </section>
+                                                                <section class="col-md-3 to-right">
+                                                                     <button class="btn btn-success" id="success">
+                                                                        <i class="fa fa-floppy-o"></i> Remove
+                                                                    </button>
+                                                                </section>
+                                                                <section class="col-md-3">
+                                                                </section>
+                                                            </section>
+                                                            
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        using (Html.BeginForm("UploadFile", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                        {
+                                                        <section class="form-group">
+                                                        <input type="hidden" name="formatId" value="@format.formatID" />
+                                                        <input type="hidden" name="isEdit" value="true" />
+                                                        <input type="hidden" name="productId" value="@ViewBag.ProductId" />
+                                                            <section class="col-md-3 to-right">
+                                                                <span>@format.name</span>
+                                                            </section>
+                                                            <section class="col-md-3 to-right">
+                                                                <input type="file" name="file" id="@format.name">
+                                                            
+                                                            </section>
+                                                            <section class="col-md-3">
+                                                                <button class="btn btn-success" id="success">
+                                                                    <i class="fa fa-floppy-o"></i> Upload
+                                                                </button>
+                                                            </section>
+                                                        </section>
+                                                        }    
+                                                    }
+
+
+
+
+                                                    
+                                                }
+
+                                            </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>

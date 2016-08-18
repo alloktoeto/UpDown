@@ -1,0 +1,38 @@
+﻿@model UpDown.Models.SubGenre
+
+@{
+    ViewBag.Title = "SubGenreEdit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>SubGenreEdit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>SubGenre</legend>
+
+        @Html.HiddenFor(model => model.subGenreId)
+        @Html.HiddenFor(model => model.subGenreGenreId)
+
+        <div class="editor-label">
+            <label>Name</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.subGenreName)
+            @Html.ValidationMessageFor(model => model.subGenreName)
+        </div>
+        
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

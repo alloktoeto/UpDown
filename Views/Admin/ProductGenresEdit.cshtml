@@ -1,0 +1,76 @@
+﻿@using UpDown.Models
+@model ProductGenresUpdateModel
+
+@{
+    ViewBag.Title = "ProductGenresEdit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script>
+    $(function () {
+        $('#success').click(function () {
+            $('#frm').submit();
+        });
+
+    });
+</script>
+
+<script>
+    $(function () {
+        $(".subgenres").dropdownchecklist({
+            emptyText: '-- Select Sub Genre',
+            icon: {
+                placement: 'right'
+            }
+        });
+    });
+ </script>
+
+<section class="main-content">
+                    <section class="row">
+                        <section class="col-md-12 panel products-wrap bgc-wrap">
+                            <section class="panel-header">
+                                <h3 class="header-title">Product Genres</h3>
+                            </section>
+                            <section class="panel-body">
+                                <section class="action-bar">
+                                    
+                                    <button class="btn btn-success" id="success">
+                                        <i class="fa fa-floppy-o"></i> Continue
+                                    </button>
+                                </section>
+                                <section class="row">
+                                    
+                                     <section class="col-md-6">
+                                    @using (Html.BeginForm("ProductGenresEdit", "Admin", FormMethod.Post, new { id = "frm", role = "form" }))
+                                    {
+                                        <input type="hidden" name="productId" value="@ViewBag.ProductId" />
+                                           
+                                            foreach (genre g in Model.Genres)
+                                            {
+                                                 <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>@g.name</label>
+                                                </section>
+                                                <section class="col-md-9">
+                                                    <div class="format-select-wrap">
+                                                        <select name="subgenres" class="format-select subgenres" multiple="multiple"> 
+                                                            @foreach (SubGenre sg in g.SubGenres)
+                                                            {
+                                                                <option value="@sg.subGenreId" @(Model.Product.subGenresToProducts.Select(x => x.subGenreId).Contains(sg.subGenreId) ? "selected=\"selected\"" : "")>@sg.subGenreName</option>
+                                                            }
+
+                                                        </select>
+                                                </div>
+                                                </section>
+                                                </section>
+                                            }
+                                            
+                                    }
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+

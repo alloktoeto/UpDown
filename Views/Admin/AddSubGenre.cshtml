@@ -1,0 +1,36 @@
+﻿@model UpDown.Models.SubGenre
+
+@{
+    ViewBag.Title = "AddSubGenre";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>AddSubGenre</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Sub Genre</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.subGenreName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.subGenreName)
+            @Html.ValidationMessageFor(model => model.subGenreName)
+        </div>
+
+        
+        @Html.HiddenFor(model => model.subGenreGenreId, new {value=Model.subGenreGenreId })
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Genres", "Genres")
+</div>
+

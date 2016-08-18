@@ -1,0 +1,39 @@
+﻿#load_ajax 
+{
+    display: none;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('../../images/ajax-loader.gif') 50% 50% no-repeat rgb(224, 224, 224);
+	background-size: 55px;
+	opacity: 0.5;
+}
+
+.top-music-player-wrap.ishidden .main-container
+{
+    padding-top: 24px;
+}
+
+.top-music-player-wrap.ishidden .tmp-controls-wrap1, 
+.top-music-player-wrap.ishidden .tmp-controls-wrap2,
+.top-music-player-wrap.ishidden .tmp-controls-wrap3
+{
+    opacity: 0;
+}
+
+.top-music-player-wrap.ishidden, #top-music-player
+{
+    height:24;
+}
+
+.top-music-player-wrap.ishidden .tmp-controls-wrap3
+{
+    opacity:1;
+    margin-top: -19px;
+}
+
+
+        

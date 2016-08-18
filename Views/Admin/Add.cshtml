@@ -1,0 +1,185 @@
+﻿@using UpDown.Models
+@model UpDown.Models.product
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+   <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+  <script>      tinymce.init({ selector: 'textarea.edittext', plugins: "link" });</script>
+<script>
+    $(function () {
+        $('#success').click(function () {
+            $('#frm').submit();
+        });
+
+//        $('#genres').change(function () {
+//            var genreId = Number($(this).find('option:selected').val());
+//            $.ajax({
+//                url: '@Url.Action("GetSubGenres", "Admin")',
+//                type: 'POST',
+//                //async: true,
+//                data: { genreId: genreId },
+//                dataType: "text",
+//                beforeSend: function () {
+//                    //loader(true);
+//                },
+//                success: function (data) {
+//                    $('#subResult').html(data);
+//                    //loader(false);
+
+//                },
+//                error: function () {
+//                }
+//            });
+
+
+        $("#instruments").dropdownchecklist({
+            emptyText: '-- Select Instruments',
+            icon: {
+                placement: 'right'
+            }
+        });
+
+    });
+</script>
+
+<section class="main-content">
+                    <section class="row">
+                        <section class="col-md-12 panel products-wrap bgc-wrap">
+                            <section class="panel-header">
+                                <h3 class="header-title">Add New Product</h3>
+                            </section>
+                            <section class="panel-body">
+                                <section class="action-bar">
+                                    <button class="btn btn-default" onclick="javascript:window.location.href = '@Url.Action("Products", "Admin")'">
+                                        <i class="fa fa-times"></i> Cancel
+                                    </button>
+                                    <button class="btn btn-success" id="success">
+                                        <i class="fa fa-floppy-o"></i> Save
+                                    </button>
+                                </section>
+                                <section class="row">
+                                    
+                                     <section class="col-md-6">
+                                    @using (Html.BeginForm("Add", "Admin", FormMethod.Post, new { id = "frm", role = "form", enctype = "multipart/form-data" }))
+                                    {
+                                       
+                                    <section class="row">
+                                    @Html.HiddenFor(x=>Model.prodID)
+                                                <section class="col-md-3">
+                                                    <label>Name</label>
+                                                </section>
+                                                <section class="col-md-9">
+                                                    @Html.TextBoxFor(x => Model.name, new {@class="form-control", placeholder="Name" })
+                                                </section>
+                                            </section>
+                                            <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Artist</label>
+                                                </section>
+                                                <section class="col-md-5">
+                                                @Html.DropDownListFor(x => Model.authorID, 
+                                                new SelectList((List<SelectListItem>)ViewBag.AuthorsSelectList, "Value", "Text"),
+                                                "-- Select Artist", new { @class = "form-control" })
+                                                </section>
+                                            </section>
+                                            
+                                            
+                                            <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Instrument</label>
+                                                </section>
+                                                <section class="col-md-5">
+                                                    <div class="format-select-wrap">
+                                                        <select id="instruments" name="instruments" class="form-control" multiple="multiple">
+                                                            @foreach (instrument ins in ViewBag.Instruments)
+                                                            { 
+                                                                <option value="@ins.instrumentID">@ins.name</option>
+                                                            }
+                                                           
+                                                        </select>
+                                                    </div>
+                                                </section>
+                                            </section>
+                                        
+                                        <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Short Description</label>
+                                                </section>
+                                                <section class="col-md-9">
+                                                @Html.TextAreaFor(x => Model.description_short, new { @class = "form-control", rows = "5" })
+                                                </section>
+                                            </section>
+                                        
+                                            <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Long Description</label>
+                                                </section>
+                                                <section class="col-md-9">
+                                                @Html.TextAreaFor(x => Model.description, new { @class = "form-control edittext", rows = "5" })
+                                                </section>
+                                            </section>
+                                        
+                                            <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Price</label>
+                                                </section>
+                                                <section class="col-md-5">
+                                                @Html.TextBoxFor(x => Model.price, new { @class = "form-control", placeholder = "Price" })
+                                                </section>
+                                            </section>
+                                            <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Sale Price</label>
+                                                </section>
+                                                <section class="col-md-5">
+                                                @Html.TextBoxFor(x => Model.price_New, new { @class = "form-control", placeholder = "Sale Price" })
+                                                </section>
+                                            </section>
+                                        
+                                            <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Image</label>
+                                                </section>
+                                                <section class="col-md-9">
+                                                    <input type="file" name="file" id="file" />
+                                                </section>
+                                            </section>
+                                        
+                                        <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Demo Audio</label>
+                                                </section>
+                                                <section class="col-md-9">
+                                                    <input type="file" name="demo" id="demo" />
+                                                </section>
+                                            </section>
+                                        
+                                        <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Recommended</label>
+                                                </section>
+                                                <section class="col-md-9">
+
+                                                @Html.CheckBoxFor(x => x.isRecommeded)
+                                                </section>
+                                            </section>
+                                        
+                                        <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Order By</label>
+                                                </section>
+                                                <section class="col-md-9">
+
+                                                @Html.TextBoxFor(x => Model.orderBy)
+                                                </section>
+                                            </section>
+                                    }
+
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>

@@ -1,0 +1,240 @@
+﻿@using UpDown.Models
+@model List<product>
+
+
+
+
+@if (Model == null || Model.Count == 0)
+{
+ <section class="main-content">
+    <section class="row" style="padding:1vw;">
+        <div class="cart-row">
+            <div class="col-md-12">
+                <span>The cart is empty</span>
+            </div>
+        </div>
+    </section>
+ </section>   
+}
+
+else
+{
+    using (Html.BeginForm("Index", "PayPal", FormMethod.Post, new { id = "frm", onsubmit = "return validateFormats()" }))
+    {
+<section class="main-content">
+                        <section class="row" style="padding:1vw;">
+                            <h4 class="items-in-cart-title"><span>@Model.Count</span> @if (@Model.Count==1)
+	{
+		 <span>item</span>
+	}else
+	{
+              <span>items</span>                                                                            
+    }  in your cart</h4>
+                            <section class="body-page-content">
+
+                                <!-- /cart table -->
+                                <div class="row">
+                                    <table class="cart-table">
+                                        <thead class="hidden-xs hidden-sm">
+                                            <tr>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th>Discount</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (product prod in Model)
+                                            {
+                                                <tr class="product-item">
+                                                    <td class="product">
+                                                        <img class="prod-img" src="@Url.Content("~/images/Products/" + prod.prod_image)" />
+                                                        
+                                                        <div style="display:inline-block;"> 
+                                                            <h4 class="prod-title col-xs-pull-4">
+                                                            <a href="@Url.Action("Product", "Products", new { id = prod.prodID.ToString() })" title="View Product Page">@prod.author.name - @prod.name</a></h4>
+
+                                                            <!-- desktop layout -->
+                                                            <!-- <p class="hidden-xs hidden-sm">@Html.Raw(prod.description)</p> -->
+                                                            <!-- /desktop layout -->
+
+                                                            <!-- mobile layout -->
+                                                            <div class="mobile-layout hidden-md hidden-lg">
+                                                                <p>
+                                                                    <strong>Price: </strong><span>$</span>@prod.price
+                                                                </p>
+                                                                <p>
+                                                                    <strong class="hidden-md hidden-lg">Discount: </strong>
+                                                                    @if (prod.price_New!=null)
+                                                                    {
+                                                                        <span>$</span>@(prod.price - prod.price_New)
+                                                                    }
+                                                                </p>
+                                                                <p>
+                                                                    <strong class="hidden-md hidden-lg">Total: </strong><span>$</span>@(prod.price_New != null ? prod.price_New : prod.price)
+                                                                </p>
+
+                                                            </div>
+                                                            <!-- /mobile layout -->
+
+                                                            <div class="hidden-xs hidden-sm format-select-wrap">
+                                                                <h4>Please select the formats to buy</h4>
+                                                                    <select name="@prod.prodID" class="format-select desktop" multiple="multiple" prc="@(prod.price_New==null ? prod.price : prod.price_New)" onchange="priceItemsDisplay();">
+                                                                        @foreach (formatsToProduct f in prod.formatsToProducts)
+                                                                        {
+                                                                            <option value="@f.format.formatID" @(prod.FormatsSelectedList!=null && prod.FormatsSelectedList.Contains(f.format.formatID) ? "selected='selected'" : "")>@f.format.name</option>
+                                                                        }
+                                                                    </select>
+                                                                    <span class="validateSelect">*</span>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td class="hidden-md hidden-lg" style="display: initial;">
+                                                        <!-- <div class="prod-description accordion">
+                                                          <h4>Description</h4>
+                                                          <div>
+                                                            <p>@Html.Raw(prod.description)</p>
+                                                          </div>
+                                                        </div> -->
+                                                           
+                                                        <div class="format-select-wrap">
+                                                            <h4>Please select the formats to buy</h4>
+                                                                <select name="@prod.prodID" class="format-select" multiple="multiple">
+                                                                    @foreach (formatsToProduct f in prod.formatsToProducts)
+                                                                    {
+                                                                        <option value="@f.format.formatID" @(prod.FormatsSelectedList != null && prod.FormatsSelectedList.Contains(f.format.formatID) ? "selected='selected'" : "")>@f.format.name</option>
+                                                                    }
+                                                                </select>
+                                                                <span class="validateSelect">*</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="hidden-xs hidden-sm price">
+                                                        <p><span>$</span>@prod.price</p>
+                                                    </td>
+                                                    <td class="hidden-xs hidden-sm discount">
+                                                        @if (prod.price_New!=null)
+                                                        {
+                                                            <p><span>$</span>@(prod.price - prod.price_New)</p>
+                                                        }
+                                                    </td>
+                                                    <td class="hidden-xs hidden-sm price">
+                                                        <p>
+                                                            <strong><span>$</span><span class="totalPrice"></span></strong>
+                                                        </p>
+                                                    </td>
+                                                    <td class="action">
+                                                        <i class="fa fa-times remove" 
+                                                           product="@prod.prodID" 
+                                                           title="Remove Product" 
+                                                           onclick="removeItem(this);"></i>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                        
+                                    </table>
+                                </div>
+                                <!-- /cart table -->
+
+                            </section>
+                        </section>
+
+                        <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="footer-buttons">
+                            @if (Session["userLogin"] != null)
+                            {
+                                <input type="submit" class="btn-pink btn" value="Proceed To Checkout" />
+                            }
+                            else
+                            {
+                                <input type="button" class="btn-default btn" value="Sign Up" data-toggle="modal" data-target="#ModalSignUp" />
+                                <input type="button" class="btn-default btn" value="Log In" data-toggle="modal" data-target="#ModalLogIn" />
+                            }
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </section> <!-- main content -->
+    }
+}
+
+<script>
+    $(function () {
+        priceItemsDisplay();
+    });
+
+    function priceItemsDisplay() {
+        var products = $("tr.product-item");
+        for (var i = 0; i < products.length; i++) {
+            var formats = $(products[i]).find("select.desktop");
+            var xxxx = $(formats).find(":selected");
+            var priceTotal = Number($(formats).attr("prc"));
+            var priceTotalDisplay = parseFloat(Math.round(priceTotal * xxxx.length * 100) / 100).toFixed(2);
+            $(products[i]).find("td.price span.totalPrice").text(priceTotalDisplay);
+        }
+    }
+</script>
+
+
+<script>
+    $(function () {
+        var products = $(".product-item");
+        var formatsSelect = $(".format-select");
+    });
+</script>
+                    <script>
+                        $(".format-select").dropdownchecklist(
+                            {
+                                emptyText: '-- Select Format',
+                                icon: {
+                                    placement: 'right'
+                                }
+                            });
+
+                        function removeItem(obj) {
+
+                            dalert.ReplaceConfirm();
+                            confirm("Are You Sure?", "Remove Item", function (result) {
+                                if (result) {
+                                    $.ajax({
+                                        url: '@Url.Action("DeleteFromCard", "Products")',
+                                        type: 'GET',
+                                        data: { id: $(obj).attr("product") },
+                                        dataType: "text",
+                                        beforeSend: function () {
+                                            loader(true);
+                                        },
+                                        success: function (data) {
+                                            debugger;
+                                            $('#result').html(data);
+                                            $('#cart').text($('#sumResult').val() + "$");
+                                            loader(false);
+                                        },
+                                        error: function () {
+                                            loader(false);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+
+                        function validateFormats() {
+                            var flag = true;
+                            $('.validateSelect').css('display', 'none');
+                            var rows = $('.cart-row');
+                            for (var i = 0; i < rows.length; i++) {
+                                if ($(rows[i]).find('select option:selected').length == 0) {
+
+                                    $(rows[i]).find('.validateSelect').css('display', 'inline-block');
+                                    flag = false;
+                                }
+                            }
+                            if (!flag) {
+                                alert('Please choose formats');
+                            }
+                            return flag;
+                        }
+                    </script>

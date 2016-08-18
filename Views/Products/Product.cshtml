@@ -1,0 +1,182 @@
+﻿@using UpDown.Models
+@model product
+
+
+@{
+    ViewBag.Title = "Up Down Sound - Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="main-content">
+                <section class="row" style="padding:0 3px 6px 6px;">
+                    <div class="col-xs-12 col-sm-12 col-md-9 body-page-content">
+                        @using (Html.BeginForm("AddProductWithFormats", "Products", FormMethod.Post,
+                                      new { enctype = "multipart/form-data" }))
+                        {
+                        <div class="col-md-3 info-img card-wrap">
+                           <span class="card front">
+                               <img src="@Url.Content("~/images/Products/" + Model.prod_image)" class="product-img" alt="" />
+                           </span>
+                            <div class="row" style="margin-top:10px;text-align:center;">
+                                <div class="col-md-12 featured-prods-btn-wrap">
+                                    <div class="featured-prods-btn-with-lbl fpb-play" value="@Url.Content("~/Files/demo/" + Model.url)">
+                                        <i class="fa fa-play" alt="Play"></i>
+                                        <label>Play</label>
+                                    </div>
+                                    <div class="featured-prods-btn-with-lbl fpb-sequencer" title="Coming soon">
+                                        <img src="@Url.Content("~/images/basic/sequencer.png")" style="margin-right:6px;">
+                                        <label>Sequencer</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <figcaption class="col-md-9 info-desc">
+
+                            <!-- Share buttons -->
+                            <div class="row hidden-xs hidden-sm" style="line-height: 7px;float: right;margin-top: 18px;">
+                                <div id="fb-root" title="Share on Facebook"></div>
+                                <div class="fb-share-button" 
+                                     data-href="@Url.Content("~/Products/Product/"+Model.prodID)" 
+                                     data-layout="button_count" 
+                                     data-mobile-iframe="true"></div>
+                                
+                                    <div class="g-ytsubscribe"
+                                     data-channelid="UCx1-JR5n2kNe40AylU5v-fw" 
+                                     data-layout="default" 
+                                     data-count="default"></div>
+                            </div>
+                            <!-- /Share buttons -->
+
+                            <h2 class="prod-title library">@Model.name</h2>
+
+                            @* @Html.Partial("ProductStaring") *@
+
+                            <h3>Author: <span class="author">@Model.author.name</span></h3>
+                            <h3>Genre: 
+                            @foreach (var item in Model.subGenresToProducts)
+                            {
+                                <span>@item.SubGenre.subGenreName</span>
+                                <span>&nbsp;</span>
+                            }
+                            
+                            </h3>
+                            <h3>Instrument: 
+                            @foreach (var item in Model.instrumentsToProducts)
+                            {
+                                <span>@item.instrument.name</span>
+                                <span>&nbsp;</span>
+                            }
+                            
+                            </h3>
+                            
+                            <h3>Format: 
+                            @foreach (var item in Model.formatsToProducts)
+                                        {
+                                            <span>@item.format.name</span>
+                                            <span>&nbsp;</span>
+                                            
+                                        }
+                                        </h3>
+                            
+                            @if (Model.price_New==0 || Model.price_New==null)
+                            {
+                                <h3>Price: <span>$</span><span>@Model.price</span></h3>
+                            }
+                            else
+                            {
+                                <h3>Price: <span>$</span><span>@Model.price</span></h3>
+                                <h3>Sale Price: <span>$</span><span>@Model.price_New</span></h3>
+                            }
+                            <p class="col-xs-12 col-sm-12 col-md-12">@Html.Raw(Model.description)</p>
+                            
+                            <div>
+                                <div class="format-select-wrap">
+                                    <h4>Please select the formats to buy</h4>
+                                        <select name="formatsSelected" class="format-select" multiple="multiple">
+                                            @foreach (formatsToProduct f in Model.formatsToProducts)
+                                            {
+                                                <option value="@f.format.formatID">@f.format.name</option>
+                                            }
+                                        </select>
+                                </div>
+                            </div>
+                        </figcaption>
+                        <section class="row">
+
+                        
+                                
+                            
+                            @Html.HiddenFor(x => Model.prodID)
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                
+                                <div class="footer-buttons">
+
+                                    <!-- Share buttons -->
+                                    <div class="col-xs-6 text-left  hidden-md hidden-lg">
+                                        <div id="fb-root"></div>
+                                        <div class="fb-share-button" 
+                                             data-href="@Url.Content("~/Products/Product/"+Model.prodID)" 
+                                             title="Share on Facebook" 
+                                             data-layout="button_count" 
+                                             data-mobile-iframe="true"></div>
+                                        <div class="m-t-md">
+                                            <div class="g-ytsubscribe"
+                                             data-channelid="UCx1-JR5n2kNe40AylU5v-fw" 
+                                             data-layout="default" 
+                                             data-count="default"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /Share buttons -->
+
+                                    <div class="col-xs-6 col-md-12 col-lg-12">
+                                    @if (Session["card"] != null && ((List<product>)Session["card"]).Select(x => x.prodID).Contains(Model.prodID))
+                                    {
+                                        <input type="button" class="btn-grey btn btn-add-to-cart" disabled="disabled" value="Added to cart" />
+                                    }
+                                    else
+                                    {
+                                        <input type="submit" id="@Model.prodID" class="btn-pink btn btn-add-to-cart" value="Add to cart" />
+                                    }
+                                    </div>
+
+                                </div>
+                            </div>
+                            </section>
+                        }
+                        
+                <!-- -->
+                    </div>
+
+                    @Html.Partial("_PopularTagsPartial")
+                    
+                </section> <!-- main-content -->
+
+
+
+               @Html.Action("RecommendedProducts", "Products")
+
+             </section>
+
+
+             <script>
+                 $(".format-select").dropdownchecklist(
+                            {
+                                emptyText: '-- Select Format',
+                                icon: {
+                                    placement: 'right'
+                                }
+                            });
+                    </script>
+<!-- Facebook share button -->
+<script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- YouTube share button -->
+<script src="https://apis.google.com/js/platform.js"></script>

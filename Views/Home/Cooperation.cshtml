@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Up Down Sound - Cooperation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="main-content">
+	<section class="row" style="padding:0 1vw 1vw 1vw;">
+		<h2 class="text-center">We are looking for young musician stars!</h2>
+		<div class="body-page-content col-md-12">
+			<div class="row">
+				<div class="col-md-push-3 col-md-6 text-justify">
+				<p>
+                <b>Up Down Sound</b> proposes cooperation to electronic musicians, music producers and beat-makers.
+Good conditions, personal approach and professional team will help you grow, create and make money with us. Unique platform, global system of promotion will let your product become well known in any part of the world. The only our requirements are quality and creativity, the rest is our concern. You are welcome to become a personality in <b>Up Down Sound</b> family.
+For more details…
+                </p>
+			</div>
+			</div>
+			<div class="row">
+				<div class="form-wrap col-md-push-3 col-md-6">
+
+            @using (Html.BeginForm("CooperationMsgSend", "Home", FormMethod.Post, new { rol = "form", @class = "form-inline" }))
+            {
+                <h3>Fill the form and we'll be back to you in 24 hours</h3>
+					<div class="row">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" name="name" id="name" require>
+					</div>
+					<div class="row">
+						<label for="email">E-mail</label>
+						<input type="email" class="form-control" id="email" name="email" require>
+					</div>
+					<div class="row">
+						<label for="instrument">Instrument</label>
+						<input type="text" class="form-control" id="instrument" name="instrument" require>
+					</div>
+					<div class="row">
+						<label for="message">Message</label>
+						<textarea class="form-control" id="message" rows="8" name="message" require></textarea>
+					</div>
+					<div class="row">
+						<div class="footer-buttons" style="padding-right: .18em;">
+							<input type="submit" class="btn-pink btn" id="start-cooperation" value="Start Cooperation"/>	
+						</div>
+					</div>
+            }
+
+				<form rol="form" class="form-inline">
+					
+				</form>
+			</div>
+			</div>
+
+		</div>
+	</section>
+</section>

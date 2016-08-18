@@ -1,0 +1,5 @@
+C:\Users\Gelman\Desktop\UpDown\UpDown\bin\UpDown.dll
+C:\Users\Gelman\Desktop\UpDown\UpDown\bin\UpDown.pdb
+C:\Users\Gelman\Desktop\UpDown\UpDown\obj\Release\UpDown.csprojResolveAssemblyReference.cache
+C:\Users\Gelman\Desktop\UpDown\UpDown\obj\Release\UpDown.dll
+C:\Users\Gelman\Desktop\UpDown\UpDown\obj\Release\UpDown.pdb

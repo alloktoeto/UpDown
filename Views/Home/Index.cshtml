@@ -1,0 +1,34 @@
+﻿@using UpDown.Models
+@model List<product>
+@{
+    ViewBag.Title = "Up Down Sound - Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="main-content">
+        <section class="row">
+            <div class="hidden-xs hidden-sm col-md-2">
+                <h2 class="title-block">Special search by</h2>
+                @Html.Partial("_SpecialSearch")
+            </div> <!-- left-menu -->
+            @*@Html.Partial("_Carousel")*@
+            @Html.Action("CarouselPartial", "Home")
+            @Html.Partial("_PopularTagsPartial")
+            </section>
+
+<section class="row m-t-md">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <h2 class="title-block">Our products</h2>
+        <ul class="row featured-prods-list">
+
+        @foreach (product prod in Model)
+        {
+            {
+                Html.RenderPartial("~/Views/Products/ProductPartial.cshtml", prod);
+            }
+        }
+        </ul>
+        </div>
+    </section>
+
+</section>

@@ -1,0 +1,79 @@
+﻿@using UpDown.Models
+@model product
+
+<li id="@Model.prodID" 
+                class="col-xs-6 col-sm-6 col-md-2 featured-prod" 
+                data-href="@Url.Action("Product", "Products", new { id = Model.prodID.ToString() })">
+                
+                    <figure class="col-xs-12 col-sm-12">
+                        <section class="card-wrap">
+                            <div class="card front">
+                                @if (Model.price_New > 0)
+                                {
+                                    <span class="fp-sale"><span>SALE</span></span>
+                                }
+                                <img src="@Url.Content("~/images/Products/" + Model.prod_image)" alt="@Model.name" title="@Model.name" class="product-img"/>
+                            </div>
+                            <div class="card back">
+                                <img class="hidden-md hidden-lg" src="@Url.Content("~/images/basic/1px.jpg")" alt="Empty picture"> 
+                                <div class="product-description">
+                                    <a href="@Url.Action("Product", "Products", new { id = Model.prodID.ToString() })">
+                                        @Html.Raw(Model.description_short)
+                                    </a>
+                                </div>
+                                                            
+                                @* @Html.Partial("ProductStaring") *@
+                                                            
+                                <div class="col-xs-12 col-sm-12 col-md-12 product-actions">
+                                    <button class="btn btn-default featured-prods-btn fpb-play" title="Play" 
+                                        value="@Url.Content("~/Files/demo/" + Model.url)">
+                                        <i class="fa fa-play" alt="Play"></i>
+                                    </button>
+                                    
+                                    @if (Session["card"]!=null)
+                                    {
+                                        if (((List<product>)Session["card"]).Select(x => x.prodID).Contains(Model.prodID))
+                                        {
+                                            <button class="btn btn-default featured-prods-btn fpb-buy added-to-cart" title="Added To Cart"> 
+                                                <img src="@Url.Content("~/images/basic/cart.png")" alt="Added To Cart"> 
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-default featured-prods-btn fpb-buy buy-product" title="Add To Cart" onclick="addToBasket('@Model.prodID')"> 
+                                                <img src="@Url.Content("~/images/basic/cart.png")" alt="Add To Cart"> 
+                                            </button>
+                                        }
+                                    }
+
+                                    else
+                                    {
+                                        <button class="btn btn-default featured-prods-btn fpb-buy buy-product" title="Add To Cart" onclick="addToBasket('@Model.prodID')"> 
+                                            <img src="@Url.Content("~/images/basic/cart.png")" alt="Add To Cart"> 
+                                        </button>
+                                    }     
+                                    
+                                    <button class="btn btn-default featured-prods-btn fpb-sequencer" title="Coming soon"> 
+                                        <img src="@Url.Content("~/images/basic/sequencer.png")" alt="Sequencer"> 
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                        <figcaption>
+                            <a href="@Url.Action("Product", "Products", new { id = Model.prodID.ToString() })">
+                                <h3 class="library">@Model.name</h3>
+                                <h3 class="author">@Model.author.name</h3>
+                                @if (Model.price_New == 0 || Model.price_New == null)
+                                {
+                                    <h3 class="price"><span>$</span>@Model.price</h3>
+                                }
+                                else
+                                {
+                                    <h3 class="old-price"><span>$</span>@Model.price</h3>
+                                    <h3 class="new-price"><span>$</span>@Model.price_New</h3>
+                                }
+                            </a>
+                        </figcaption>
+                    </figure>
+                <!-- </a> -->
+            </li>

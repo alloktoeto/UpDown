@@ -1,0 +1,147 @@
+﻿@using UpDown.Models
+@model List<product>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    int countProducts = 5;
+    }
+
+    <script>
+        $(function () {
+            $(".buy-product").click(function () {
+                var id = $(this).closest("li").attr("id");
+                $.ajax({
+                    url: '@Url.Action("AddToCard", "Products")',
+                    type: 'POST',
+                    //async: true,
+                    data: { id: id },
+                    dataType: "text",
+                    beforeSend: function () {
+                        loader(true);
+                    },
+                    success: function (data) {
+                        $('#cart').text(data + "$");
+                        loader(false);
+
+                    }
+                });
+            });
+        });
+</script>
+
+<section class="main-content">
+                        <section class="row">
+                           
+
+                            @if (Model == null || Model.Count == 0)
+                            {
+                             <section class="main-content">
+                                <section class="row" style="padding:1vw;">
+                                    <div class="cart-row">
+                                        <div class="col-md-12">
+                                            <span>No products to display</span>
+                                        </div>
+                                    </div>
+                                </section>
+                             </section>   
+                            }
+
+                            else
+                            {
+                                
+                            
+                            
+                            <section class="row">
+                               
+
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <h2 class="title-block">Search Results</h2>
+
+
+                                    <ul class="row featured-prods-list">
+
+        @foreach (product prod in Model)
+        {
+            <li class="col-xs-6 col-sm-6 col-md-2 featured-prod" id="@prod.prodID" data-href="@Url.Action("Product", "Products", new { id = prod.prodID.ToString() })">
+                <figure class="col-xs-12 col-sm-12">
+                    <section class="card-wrap">
+                        <div class="card front">
+                            @if (prod.price_New > 0)
+                            {
+                                <span class="fp-sale"><span>SALE</span></span>
+                            }
+                            <img src="@Url.Content("~/images/Products/" + prod.prod_image)" alt="@prod.name" title="@prod.name" class="product-img"/>
+                        </div>
+                        <div class="card back">
+
+                            <div class="product-description">
+                                @Html.Raw(prod.description)
+                            </div>
+                                                        
+                            @* @Html.Partial("ProductStaring") *@
+                                                        
+                            <div class="col-xs-12 col-sm-12 col-md-12 product-actions">
+                                <div class="featured-prods-btn fpb-play" title="Play" 
+                                    value="@Url.Content("~/Files/demo/" + prod.url)">
+                                    <i class="fa fa-play" alt="Play"></i>
+                                </div>
+                                
+                                @if (Session["card"] != null)
+                                {
+                                    if (((List<product>)Session["card"]).Select(x => x.prodID).Contains(prod.prodID))
+                                    {
+                                        <div class="featured-prods-btn fpb-buy added-to-cart" title="Added To Cart"> 
+                                            <img src="@Url.Content("~/images/basic/cart.png")" alt="Added To Cart"> 
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="featured-prods-btn fpb-buy buy-product" title="Add To Cart" onclick="addToBasket('@prod.prodID')"> 
+                                            <img src="@Url.Content("~/images/basic/cart.png")" alt="Add To Cart"> 
+                                        </div>
+                                    }
+                                }
+
+                                else
+                                {
+                                    <div class="featured-prods-btn fpb-buy buy-product" title="Add To Cart" onclick="addToBasket('@prod.prodID')"> 
+                                        <img src="@Url.Content("~/images/basic/cart.png")" alt="Add To Cart"> 
+                                    </div>
+                                }     
+                                
+                                <div class="featured-prods-btn fpb-sequencer" title="Coming soon"> 
+                                    <img src="@Url.Content("~/images/basic/sequencer.png")" alt="Sequencer"> 
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <figcaption>
+                        <h3 class="library">@prod.name</h3>
+                        <h3 class="author">@prod.author.name</h3>
+                        @if (prod.price_New == 0 || prod.price_New == null)
+                        {
+                            <h3 class="price"><span>$</span>@prod.price</h3>
+                        }
+                        else
+                        {
+                            <h3 class="old-price"><span>$</span>@prod.price</h3>
+                            <h3 class="new-price"><span>$</span>@prod.price_New</h3>
+                        }
+                    </figcaption>
+                </figure>
+            </li>
+        }
+        </ul>
+
+                                </div>
+                            </section>
+                            
+                            }
+                        </section>
+                    </section> <!-- main content -->

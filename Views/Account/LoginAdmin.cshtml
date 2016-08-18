@@ -1,0 +1,82 @@
+﻿@using UpDown.Models
+@model LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <title>Sign In | Up Down Sound Admin</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <link href="../../images/basic/logo-arrows.png" rel="shortcut icon" type="image/png"/>
+        <link href="../../libs/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" />
+
+
+        <link href="../../Content/css/libs/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+        <link href="../../Content/css/admin/default.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body id="signin-page">
+        <section class="container-fluid">
+            <section class="row page-img">
+                <img src="../../images/basic/music-wallpaper.jpg" alt="" class="img-responsive">
+            </section>
+            <section class="row main-content">
+                <section class="form-wrap col-md-offset-4 col-md-4">
+                    <div class="col-md-12">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <div class="panel-title">
+                                    <div class="logo-wrap">
+                                        <img src="../../images/basic/logo.png" alt="Up Down Sound Admin">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                            @using (Html.BeginForm( new{@class="form-horizontal"}))
+                            { 
+                            <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 to-right" for="email">Email</label>
+                                            <div class="col-sm-7">
+                                            @Html.TextBoxFor(x => Model.UserName, new { id = "email", @class="form-control", placeholder="Enter email" })
+                                                @*<input type="email" id="email" class="form-control" placeholder="Enter email">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 to-right" for="password">Password</label>
+                                            <div class="col-sm-7">
+                                            @Html.PasswordFor(x=>Model.Password, new{id="password", @class="form-control", placeholder="Enter password"})
+                                                @*<input type="password" id="password" class="form-control" placeholder="Enter password">*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-3 col-md-7 to-right">
+                                                <button class="btn btn-theme" type="submit">Sign in</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            }
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <sectioin class="row">
+                    <footer class="signature col-md-12">
+                        <p>Developed by Up Down Sound Ltd. (c) 2015</p>
+                    </footer>
+                </sectioin>
+            </section>
+        </section>
+        <!--scripts-->
+
+        
+        <script src="../../Scripts/jquery.js" type="text/javascript"></script>
+        <script src="../../libs/bootstrap/bootstrap.js" type="text/javascript"></script>
+        <script src="../../Scripts/common.js" type="text/javascript"></script>
+    </body>
+</html>

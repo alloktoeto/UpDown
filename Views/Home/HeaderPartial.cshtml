@@ -1,0 +1,47 @@
+﻿<script>
+    $(function () {
+        
+        $("#in-search").autocomplete({
+            source: @Html.Raw(ViewBag.SearchItems)
+        });
+
+        
+    });
+</script>
+
+
+<div class="hidden-xs hidden-sm col-md-push-6 col-md-6">
+<input type="hidden" id="aa" />
+
+    <ul class="menu-buttons">
+    @if (Session["userLogin"] != null)
+    {
+        UpDown.Models.user user = Session["userLogin"] as UpDown.Models.user;
+        <li class="dropdown-wrap profile-wrap">Hello @user.email <i class="fa fa-caret-down"></i>
+            <ul class="dropdown">
+                <li><a href="@Url.Action("Index", "Profile")">Profile</a></li>
+                <li><a href="@Url.Action("LogOff", "Account")">Log Out</a></li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li class="sign">
+            <a class="in" data-toggle="modal" data-target="#ModalLogIn">Log In</a><pre> | </pre><a class="up" data-toggle="modal" data-target="#ModalSignUp">Sign Up</a>
+        </li>
+    }
+        
+                                        
+        <li class="currency dropdown-wrap">
+            <ul class="currency-dropdown dropdown">
+                <li>USD<i class="fa fa-usd"></i></li>
+            </ul>
+            USD<i class="fa fa-usd"></i><i class="fa fa-caret-down"></i>
+        </li>
+        <li class="cart" title="Cart"><a href="@Url.Action("Cart", "Products")"><span id="cart">@ViewBag.Sum<i class="fa fa-usd"></i></span></a></li>
+    </ul>
+</div>
+
+
+
+                                

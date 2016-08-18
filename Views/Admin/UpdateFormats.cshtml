@@ -1,0 +1,105 @@
+﻿@using UpDown.Models
+@model UpDown.Models.product
+
+@{
+    ViewBag.Title = "UpdateFormats";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="main-content">
+                    <section class="row">
+                        <section class="col-md-12 panel products-wrap bgc-wrap">
+                            <section class="panel-header">
+                                <h3 class="header-title"></h3>
+                            </section>
+                            <section class="panel-body">
+                               @* <section class="action-bar">
+                                    <button class="btn btn-theme" onclick="javascript:window.location.href = '@Url.Action("Products", "Admin")'">
+                                        <i class="fa fa-times"></i> Cancel
+                                    </button>
+                                    <button class="btn btn-success" id="success">
+                                        <i class="fa fa-floppy-o"></i> Save
+                                    </button>
+                                </section>*@
+                                <section class="row">
+                                    
+                                     <section class="col-md-6">
+                                    @*using (Html.BeginForm("AddFormats", "Admin", FormMethod.Post, new { id = "frm", role = "form" }))
+                                    {*@
+                                       
+                                    <section class="row">
+                                    @Html.HiddenFor(x=>Model.prodID)
+                                    </section>
+                                        @{
+                                            List<formatsToProduct> FTP = Model.formatsToProducts.ToList(); //ViewBag.FormatsToProducts;
+                                            }
+                                        <section class="row formats-wrap">
+                                                <section class="col-md-12">
+                                                    <label>Formats</label>
+                                                </section>
+
+                                                @foreach (format format in ViewBag.Formats)
+                                                {
+
+                                                    if (FTP.Where(x => x.format_Id == format.formatID).ToList().Count > 0)
+                                                    {
+                                                    <section class="form-group">
+                                                            <input type="hidden" name="formatId" value="@format.formatID" />
+                                                            <input type="hidden" name="productId" value="@ViewBag.ProductId" />
+                                                                <section class="col-md-3 to-right">
+                                                                    <span>@format.name</span>
+                                                                </section>
+                                                                <section class="col-md-3 to-right">
+                                                                    <a href="@Url.Action("DeleteFormatFromProduct", "Admin", new {productId = Model.prodID, formatId = format.formatID })" class="btn btn-danger" role="button">Delete Format</a>
+                                                                </section>
+                                                            </section>
+                                                    }
+
+                                                    else
+                                                    {
+                                                        using (Html.BeginForm("UploadFile", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                                        {
+                                                            <section class="form-group">
+                                                            <input type="hidden" name="formatId" value="@format.formatID" />
+                                                            <input type="hidden" name="productId" value="@ViewBag.ProductId" />
+                                                                <section class="col-md-3 to-right">
+                                                                    <span>@format.name</span>
+                                                                </section>
+                                                                <section class="col-md-3 to-right">
+                                                                    <input type="file" name="file" id="@format.name">
+                                                            
+                                                                </section>
+                                                                <section class="col-md-3">
+                                                                    <button class="btn btn-success" id="success">
+                                                                        <i class="fa fa-floppy-o"></i> Upload
+                                                                    </button>
+                                                                </section>
+                                                            </section>
+                                                        }
+                                                    }
+                                                }
+
+                                            </section>
+                                            
+                                            <section class="row">
+                                                <section class="col-md-3">
+                                                    <label>Demo Audio</label>
+                                                </section>
+                                                <section class="col-md-3">
+                                                    <input type="file" name="demo" id="demo">
+                                                </section>
+                                                <section class="col-md-3">
+                                                    <button class="btn btn-success" id="success1">
+                                                        <i class="fa fa-floppy-o"></i> Upload
+                                                    </button>
+                                                </section>
+                                            </section>
+                                    @*}*@
+
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+

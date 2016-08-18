@@ -1,0 +1,55 @@
+﻿@using UpDown.Models
+@model List<user>
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="main-content">
+                    <section class="row">
+                        <section class="col-md-12 panel products-wrap bgc-wrap">
+                            <section class="panel-header">
+                                <h3 class="header-title"></h3>
+                            </section>
+                            <section class="panel-body">
+                                @*<section class="action-bar">
+                                    <button class="btn btn-theme btn-add-new-user">
+                                        <a href="user-new.html">
+                                            <i class="fa fa-plus"></i> Add New
+                                        </a>
+                                    </button>
+                                </section>*@
+                                <table class="table recent-activities-table order-column" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>   
+                                            <th>Role</th>      
+                                            <th>Username</th>
+                                            <th>Email</th>                                   
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (user item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.userID</td>
+                                                <td>@item.firstname @item.lastname</td>
+                                                <td>@(item.idAdmin==true ? "Admin" : "User")</td>
+                                                <td>@item.username</td>
+                                                <td>@item.email</td>
+                                                <td>
+                                                    <a class="fa fa-eye"  title="View" href="#"></a>
+                                                    <a class="fa fa-trash-o" title="Delete" href="#" onclick="return confirm('Are you sure?')"></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                       
+                                    </tbody>
+                                </table>
+                            </section>
+                        </section>
+                    </section>
+                </section>

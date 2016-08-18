@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_84979_udsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="DB_84979_udsEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="articles" EntityType="DB_84979_udsModel.article" />
+    <EntitySet Name="authors" EntityType="DB_84979_udsModel.author" />
+    <EntitySet Name="carusel_images" EntityType="DB_84979_udsModel.carusel_images" />
+    <EntitySet Name="countries" EntityType="DB_84979_udsModel.country" />
+    <EntitySet Name="currencies" EntityType="DB_84979_udsModel.currency" />
+    <EntitySet Name="downloads" EntityType="DB_84979_udsModel.download" />
+    <EntitySet Name="effects" EntityType="DB_84979_udsModel.effect" />
+    <EntitySet Name="formats" EntityType="DB_84979_udsModel.format" />
+    <EntitySet Name="formatsToProducts" EntityType="DB_84979_udsModel.formatsToProduct" />
+    <EntitySet Name="genres" EntityType="DB_84979_udsModel.genre" />
+    <EntitySet Name="instruments" EntityType="DB_84979_udsModel.instrument" />
+    <EntitySet Name="instrumentsToProducts" EntityType="DB_84979_udsModel.instrumentsToProduct" />
+    <EntitySet Name="languages" EntityType="DB_84979_udsModel.language" />
+    <EntitySet Name="menus" EntityType="DB_84979_udsModel.menu" />
+    <EntitySet Name="pages" EntityType="DB_84979_udsModel.page" />
+    <EntitySet Name="pictures" EntityType="DB_84979_udsModel.picture" />
+    <EntitySet Name="product_statuses" EntityType="DB_84979_udsModel.product_statuses" />
+    <EntitySet Name="products" EntityType="DB_84979_udsModel.product" />
+    <EntitySet Name="sounds" EntityType="DB_84979_udsModel.sound" />
+    <EntitySet Name="SubGenres" EntityType="DB_84979_udsModel.SubGenre" />
+    <EntitySet Name="subGenresToProducts" EntityType="DB_84979_udsModel.subGenresToProduct" />
+    <EntitySet Name="Table_1" EntityType="DB_84979_udsModel.Table_1" />
+    <EntitySet Name="tags" EntityType="DB_84979_udsModel.tag" />
+    <EntitySet Name="transactions" EntityType="DB_84979_udsModel.transaction" />
+    <EntitySet Name="users" EntityType="DB_84979_udsModel.user" />
+    <AssociationSet Name="FK_products_authors" Association="DB_84979_udsModel.FK_products_authors">
+      <End Role="authors" EntitySet="authors" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_countries_languages" Association="DB_84979_udsModel.FK_countries_languages">
+      <End Role="languages" EntitySet="languages" />
+      <End Role="countries" EntitySet="countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_currencies_countries" Association="DB_84979_udsModel.FK_currencies_countries">
+      <End Role="countries" EntitySet="countries" />
+      <End Role="currencies" EntitySet="currencies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_effects" Association="DB_84979_udsModel.FK_products_effects">
+      <End Role="effects" EntitySet="effects" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_formatsToProducts_formats" Association="DB_84979_udsModel.FK_formatsToProducts_formats">
+      <End Role="formats" EntitySet="formats" />
+      <End Role="formatsToProducts" EntitySet="formatsToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_formatsToProducts_products" Association="DB_84979_udsModel.FK_formatsToProducts_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="formatsToProducts" EntitySet="formatsToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubGenres_genres" Association="DB_84979_udsModel.FK_SubGenres_genres">
+      <End Role="genres" EntitySet="genres" />
+      <End Role="SubGenres" EntitySet="SubGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_instrumentsToProducts_instruments" Association="DB_84979_udsModel.FK_instrumentsToProducts_instruments">
+      <End Role="instruments" EntitySet="instruments" />
+      <End Role="instrumentsToProducts" EntitySet="instrumentsToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_instrumentsToProducts_products" Association="DB_84979_udsModel.FK_instrumentsToProducts_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="instrumentsToProducts" EntitySet="instrumentsToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_pictures" Association="DB_84979_udsModel.FK_products_pictures">
+      <End Role="pictures" EntitySet="pictures" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_product_statuses" Association="DB_84979_udsModel.FK_products_product_statuses">
+      <End Role="product_statuses" EntitySet="product_statuses" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_sounds" Association="DB_84979_udsModel.FK_products_sounds">
+      <End Role="sounds" EntitySet="sounds" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subGenresToProducts_products" Association="DB_84979_udsModel.FK_subGenresToProducts_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="subGenresToProducts" EntitySet="subGenresToProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subGenresToProducts_SubGenres" Association="DB_84979_udsModel.FK_subGenresToProducts_SubGenres">
+      <End Role="SubGenres" EntitySet="SubGenres" />
+      <End Role="subGenresToProducts" EntitySet="subGenresToProducts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="article">
+    <Key>
+      <PropertyRef Name="articleID" />
+    </Key>
+    <Property Name="articleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="txt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="dateUpload" Type="DateTime" />
+    <Property Name="dateUpdate" Type="DateTime" />
+    <Property Name="authorID" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="page" Type="Int32" />
+    <Property Name="view" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="author">
+    <Key>
+      <PropertyRef Name="authorID" />
+    </Key>
+    <Property Name="authorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="DB_84979_udsModel.FK_products_authors" FromRole="authors" ToRole="products" />
+  </EntityType>
+  <EntityType Name="carusel_images">
+    <Key>
+      <PropertyRef Name="imageID" />
+    </Key>
+    <Property Name="imageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="url" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="alt" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="text" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="languageID" Type="Int32" />
+    <NavigationProperty Name="language" Relationship="DB_84979_udsModel.FK_countries_languages" FromRole="countries" ToRole="languages" />
+    <NavigationProperty Name="currencies" Relationship="DB_84979_udsModel.FK_currencies_countries" FromRole="countries" ToRole="currencies" />
+  </EntityType>
+  <EntityType Name="currency">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="countryID" Type="Int32" />
+    <Property Name="icon" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="gate" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="shortName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="country" Relationship="DB_84979_udsModel.FK_currencies_countries" FromRole="currencies" ToRole="countries" />
+  </EntityType>
+  <EntityType Name="download">
+    <Key>
+      <PropertyRef Name="downloadID" />
+    </Key>
+    <Property Name="downloadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" />
+    <Property Name="userID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="effect">
+    <Key>
+      <PropertyRef Name="effectID" />
+    </Key>
+    <Property Name="effectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="DB_84979_udsModel.FK_products_effects" FromRole="effects" ToRole="products" />
+  </EntityType>
+  <EntityType Name="format">
+    <Key>
+      <PropertyRef Name="formatID" />
+    </Key>
+    <Property Name="formatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="formatsToProducts" Relationship="DB_84979_udsModel.FK_formatsToProducts_formats" FromRole="formats" ToRole="formatsToProducts" />
+  </EntityType>
+  <EntityType Name="formatsToProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_Id" Type="Guid" Nullable="false" />
+    <Property Name="format_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="format" Relationship="DB_84979_udsModel.FK_formatsToProducts_formats" FromRole="formatsToProducts" ToRole="formats" />
+    <NavigationProperty Name="product" Relationship="DB_84979_udsModel.FK_formatsToProducts_products" FromRole="formatsToProducts" ToRole="products" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="genreID" />
+    </Key>
+    <Property Name="genreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="SubGenres" Relationship="DB_84979_udsModel.FK_SubGenres_genres" FromRole="genres" ToRole="SubGenres" />
+  </EntityType>
+  <EntityType Name="instrument">
+    <Key>
+      <PropertyRef Name="instrumentID" />
+    </Key>
+    <Property Name="instrumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="instrumentsToProducts" Relationship="DB_84979_udsModel.FK_instrumentsToProducts_instruments" FromRole="instruments" ToRole="instrumentsToProducts" />
+  </EntityType>
+  <EntityType Name="instrumentsToProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="instrumentId" Type="Int32" Nullable="false" />
+    <Property Name="productId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="instrument" Relationship="DB_84979_udsModel.FK_instrumentsToProducts_instruments" FromRole="instrumentsToProducts" ToRole="instruments" />
+    <NavigationProperty Name="product" Relationship="DB_84979_udsModel.FK_instrumentsToProducts_products" FromRole="instrumentsToProducts" ToRole="products" />
+  </EntityType>
+  <EntityType Name="language">
+    <Key>
+      <PropertyRef Name="languageID" />
+    </Key>
+    <Property Name="languageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="countries" Relationship="DB_84979_udsModel.FK_countries_languages" FromRole="languages" ToRole="countries" />
+  </EntityType>
+  <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="menuID" />
+    </Key>
+    <Property Name="menuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="show" Type="Boolean" />
+    <Property Name="action" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="controller" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="page">
+    <Key>
+      <PropertyRef Name="pageID" />
+    </Key>
+    <Property Name="pageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="txt" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="picture">
+    <Key>
+      <PropertyRef Name="pictureID" />
+    </Key>
+    <Property Name="pictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="category" Type="Int32" />
+    <NavigationProperty Name="products" Relationship="DB_84979_udsModel.FK_products_pictures" FromRole="pictures" ToRole="products" />
+  </EntityType>
+  <EntityType Name="product_statuses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="cl" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="DB_84979_udsModel.FK_products_product_statuses" FromRole="product_statuses" ToRole="products" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="prodID" />
+    </Key>
+    <Property Name="prodID" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="authorID" Type="Int32" />
+    <Property Name="soundID" Type="Int32" />
+    <Property Name="dateUpload" Type="DateTime" />
+    <Property Name="size" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="url" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="downloads" Type="Int32" />
+    <Property Name="views" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="price_New" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="prod_status" Type="Int32" />
+    <Property Name="prod_rating" Type="Int32" />
+    <Property Name="effectId" Type="Int32" />
+    <Property Name="isRecommeded" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="author" Relationship="DB_84979_udsModel.FK_products_authors" FromRole="products" ToRole="authors" />
+    <NavigationProperty Name="effect" Relationship="DB_84979_udsModel.FK_products_effects" FromRole="products" ToRole="effects" />
+    <NavigationProperty Name="formatsToProducts" Relationship="DB_84979_udsModel.FK_formatsToProducts_products" FromRole="products" ToRole="formatsToProducts" />
+    <NavigationProperty Name="instrumentsToProducts" Relationship="DB_84979_udsModel.FK_instrumentsToProducts_products" FromRole="products" ToRole="instrumentsToProducts" />
+    <NavigationProperty Name="picture" Relationship="DB_84979_udsModel.FK_products_pictures" FromRole="products" ToRole="pictures" />
+    <NavigationProperty Name="product_statuses" Relationship="DB_84979_udsModel.FK_products_product_statuses" FromRole="products" ToRole="product_statuses" />
+    <NavigationProperty Name="sound" Relationship="DB_84979_udsModel.FK_products_sounds" FromRole="products" ToRole="sounds" />
+    <NavigationProperty Name="subGenresToProducts" Relationship="DB_84979_udsModel.FK_subGenresToProducts_products" FromRole="products" ToRole="subGenresToProducts" />
+    <Property Type="String" Name="prod_image" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sound">
+    <Key>
+      <PropertyRef Name="soundID" />
+    </Key>
+    <Property Name="soundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="DB_84979_udsModel.FK_products_sounds" FromRole="sounds" ToRole="products" />
+  </EntityType>
+  <EntityType Name="SubGenre">
+    <Key>
+      <PropertyRef Name="subGenreId" />
+    </Key>
+    <Property Name="subGenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subGenreName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="subGenreGenreId" Type="Int32" />
+    <NavigationProperty Name="genre" Relationship="DB_84979_udsModel.FK_SubGenres_genres" FromRole="SubGenres" ToRole="genres" />
+    <NavigationProperty Name="subGenresToProducts" Relationship="DB_84979_udsModel.FK_subGenresToProducts_SubGenres" FromRole="SubGenres" ToRole="subGenresToProducts" />
+  </EntityType>
+  <EntityType Name="subGenresToProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subGenreId" Type="Int32" Nullable="false" />
+    <Property Name="productId" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="DB_84979_udsModel.FK_subGenresToProducts_products" FromRole="subGenresToProducts" ToRole="products" />
+    <NavigationProperty Name="SubGenre" Relationship="DB_84979_udsModel.FK_subGenresToProducts_SubGenres" FromRole="subGenresToProducts" ToRole="SubGenres" />
+  </EntityType>
+  <EntityType Name="Table_1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tag">
+    <Key>
+      <PropertyRef Name="tagId" />
+    </Key>
+    <Property Name="tagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="url" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="transID" />
+    </Key>
+    <Property Name="transID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" />
+    <Property Name="gross" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="token" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Guid" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="lastname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="birthdate" Type="DateTime" />
+    <Property Name="status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="phone2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="dateRegistry" Type="DateTime" />
+    <Property Name="lastAuth" Type="DateTime" />
+    <Property Name="idAdmin" Type="Boolean" />
+    <Property Name="username" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="isSuccessInSite" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_products_authors">
+    <End Role="authors" Type="DB_84979_udsModel.author" Multiplicity="0..1" />
+    <End Role="products" Type="DB_84979_udsModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="authors">
+        <PropertyRef Name="authorID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="authorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_countries_languages">
+    <End Role="languages" Type="DB_84979_udsModel.language" Multiplicity="0..1" />
+    <End Role="countries" Type="DB_84979_udsModel.country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="languages">
+        <PropertyRef Name="languageID" />
+      </Principal>
+      <Dependent Role="countries">
+        <PropertyRef Name="languageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_currencies_countries">
+    <End Role="countries" Type="DB_84979_udsModel.country" Multiplicity="0..1" />
+    <End Role="currencies" Type="DB_84979_udsModel.currency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="countries">
+        <PropertyRef Name="code" />
+      </Principal>
+      <Dependent Role="currencies">
+        <PropertyRef Name="countryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_effects">
+    <End Role="effects" Type="DB_84979_udsModel.effect" Multiplicity="0..1" />
+    <End Role="products" Type="DB_84979_udsModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="effects">
+        <PropertyRef Name="effectID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="effectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_formatsToProducts_formats">
+    <End Role="formats" Type="DB_84979_udsModel.format" Multiplicity="1" />
+    <End Role="formatsToProducts" Type="DB_84979_udsModel.formatsToProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="formats">
+        <PropertyRef Name="formatID" />
+      </Principal>
+      <Dependent Role="formatsToProducts">
+        <PropertyRef Name="format_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_formatsToProducts_products">
+    <End Role="products" Type="DB_84979_udsModel.product" Multiplicity="1" />
+    <End Role="formatsToProducts" Type="DB_84979_udsModel.formatsToProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="prodID" />
+      </Principal>
+      <Dependent Role="formatsToProducts">
+        <PropertyRef Name="product_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubGenres_genres">
+    <End Role="genres" Type="DB_84979_udsModel.genre" Multiplicity="0..1" />
+    <End Role="SubGenres" Type="DB_84979_udsModel.SubGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genres">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="SubGenres">
+        <PropertyRef Name="subGenreGenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_instrumentsToProducts_instruments">
+    <End Role="instruments" Type="DB_84979_udsModel.instrument" Multiplicity="1" />
+    <End Role="instrumentsToProducts" Type="DB_84979_udsModel.instrumentsToProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="instruments">
+        <PropertyRef Name="instrumentID" />
+      </Principal>
+      <Dependent Role="instrumentsToProducts">
+        <PropertyRef Name="instrumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_instrumentsToProducts_products">
+    <End Role="products" Type="DB_84979_udsModel.product" Multiplicity="1" />
+    <End Role="instrumentsToProducts" Type="DB_84979_udsModel.instrumentsToProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="prodID" />
+      </Principal>
+      <Dependent Role="instrumentsToProducts">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_pictures">
+    <End Role="pictures" Type="DB_84979_udsModel.picture" Multiplicity="0..1" />
+    <End Role="products" Type="DB_84979_udsModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pictures">
+        <PropertyRef Name="pictureID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="pictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_product_statuses">
+    <End Role="product_statuses" Type="DB_84979_udsModel.product_statuses" Multiplicity="0..1" />
+    <End Role="products" Type="DB_84979_udsModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product_statuses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="prod_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_sounds">
+    <End Role="sounds" Type="DB_84979_udsModel.sound" Multiplicity="0..1" />
+    <End Role="products" Type="DB_84979_udsModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sounds">
+        <PropertyRef Name="soundID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="soundID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subGenresToProducts_products">
+    <End Role="products" Type="DB_84979_udsModel.product" Multiplicity="1" />
+    <End Role="subGenresToProducts" Type="DB_84979_udsModel.subGenresToProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="prodID" />
+      </Principal>
+      <Dependent Role="subGenresToProducts">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subGenresToProducts_SubGenres">
+    <End Role="SubGenres" Type="DB_84979_udsModel.SubGenre" Multiplicity="1" />
+    <End Role="subGenresToProducts" Type="DB_84979_udsModel.subGenresToProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubGenres">
+        <PropertyRef Name="subGenreId" />
+      </Principal>
+      <Dependent Role="subGenresToProducts">
+        <PropertyRef Name="subGenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

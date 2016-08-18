@@ -1,0 +1,57 @@
+﻿@using UpDown.Models
+
+<ul class="aside-menu">
+    <li class="drop-menu-item">
+        <section>
+            <img class="icon" src="@Url.Content("~/images/basic/Instruments-min.png")">
+            <span class="aside-menu-title">Instruments</span>
+            <ul class="aside-lvl2">
+                <i class="fa fa-times aside-left-times" title="Close"></i>
+                @foreach (instrument o in ViewBag.Instruments)
+                {
+                    <li><a href="@Url.Action("Index", "Products", new { instrument = o.instrumentID })">@o.name</a></li>
+                }
+                                            
+            </ul>
+        </section>
+    </li>
+    <li class="drop-menu-item">
+        <section>
+            <img class="icon" src="@Url.Content("~/images/basic/formats-min.png")">
+            <span class="aside-menu-title">Formats</span>
+            <ul class="aside-lvl2">
+                <i class="fa fa-times aside-left-times" title="Close"></i>
+                @foreach (format o in ViewBag.Formats)
+                {
+                    <li><a href="@Url.Action("Index", "Products", new { format = o.formatID })">@o.name</a></li>
+                }
+            </ul>
+        </section>
+    </li>
+    <li class="drop-menu-item">
+        <section>
+            <img class="icon" src="@Url.Content("~/images/basic/presets-min.png")">
+            <span class="aside-menu-title">Presets</span>
+            <ul class="aside-lvl2">
+                <i class="fa fa-times aside-left-times" title="Close"></i>
+                @foreach (effect o in ViewBag.Effects)
+                {
+                    <li><a href="@Url.Action("Index", "Products", new { effect = o.effectID })">@o.name</a></li>
+                }
+            </ul>
+        </section>
+    </li>
+    <li class="drop-menu-item">
+        <section>
+            <img class="icon" src="@Url.Content("~/images/basic/genres-min.png")">
+            <span class="aside-menu-title">Genres</span>
+            <ul class="aside-lvl2">
+                <i class="fa fa-times aside-left-times" title="Close"></i>
+                @foreach (genre o in ViewBag.Genres)
+                {
+                    <li><a href="@Url.Action("Index", "Products", new { genre = o.genreID })">@o.name</a></li>
+                }
+            </ul>
+        </section>
+    </li>
+</ul>

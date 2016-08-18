@@ -1,0 +1,21 @@
+﻿@using UpDown.Models
+@model List<carusel_images>
+
+<div class="col-md-7">
+    <h2 class="title-block">Best deals</h2>
+    <div id="owl-slider" class="owl-carousel">
+        
+        @foreach (var image in Model)
+        {
+            <div class="item">
+                <a href="@image.url" target="_blank">
+                    <figure>
+                        <img src="@Url.Content("~/images/slider/" + image.name)" alt="@image.alt"/>
+                        <figcaption>@image.text</figcaption>
+                    </figure>
+                </a>
+            </div>
+        }
+        
+    </div> <!--end #owl-slider-->
+</div>

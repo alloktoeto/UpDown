@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+        
+        <meta charset="UTF-8">
+        <meta name="description" content="#">
+        <meta name="keywords" content="#">
+        <meta name="author" content="#">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <link href="@Url.Content("~/images/basic/logo-arrows.png")" rel="shortcut icon" type="image/png"/>
+        @Styles.Render("~/Content/css/libs/bootstrap/bootstrap-custom.css")
+        @Styles.Render("~/Content/css/libs/jquery/css/jquery-ui.css")
+        @Styles.Render("~/Content/css/libs/font-awesome/css/font-awesome.css")
+        @Styles.Render("~/Content/css/libs/owl-carousel/owl.carousel.css")
+        @Styles.Render("~/Content/css/libs/owl-carousel/owl.theme.css")
+        @Styles.Render("~/Content/css/libs/wimpy/wimpy.css")
+        @Styles.Render("~/Content/css/ui.dropdownchecklist.themeroller.css")
+        @Styles.Render("~/Content/css/default.css")
+        @Styles.Render("~/Content/css/media.css")
+        @Styles.Render("~/Content/css/mystyle.css")
+        @Scripts.Render("~/Scripts/jquery.js")
+        @Scripts.Render("~/Scripts/jquery-ui.js")
+        
+        @Scripts.Render("~/Scripts/bootstrap.js")
+        @Scripts.Render("~/Scripts/dalert.jquery.js")
+        @Scripts.Render("~/Scripts/owl.carousel.js")
+        @Scripts.Render("~/Scripts/wimpy.js")
+        @Scripts.Render("~/Scripts/ui.dropdownchecklist-1.4-min.js")
+        @Scripts.Render("~/Scripts/fly-to-cart.js")
+        @Scripts.Render("~/Scripts/common.js")
+        @Scripts.Render("~/Scripts/ValidationLogin.js")
+        @Scripts.Render("~/Scripts/FbLoginScript.js")
+        @Scripts.Render("~/Scripts/GPLoginScript.js")
+
+    </head>
+    <body>
+        <script>
+        (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        } (document, 'script', 'facebook-jssdk'));
+        $(function () {
+        $('#formid').on('submit', function (e) {
+        loader(true);
+        });
+        });
+        
+        
+        </script>
+        
+        @Html.Action("PlayerPartial", "Home")
+        <div class="row">
+            <section class="col-xs-12 col-sm-12 menu-container mobile-menu hide">
+                <div class="hidden-md hidden-lg menu-panel-left hide">
+                    <header>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("Index", "Home")" title="Home">
+                                    <img src="@Url.Content("~/images/basic/logo-arrows.png")" alt="Logo">
+                                </a>
+                                <div class="btn-menu pull-right"><i class="fa fa-times"></i></div>
+                            </li>
+                            @if (Session["userLogin"] != null)
+                            {
+                                <li title="Profile">
+                                @{ UpDown.Models.user user = Session["userLogin"] as UpDown.Models.user; }
+                                    <a href="@Url.Action("Index", "Profile")">
+                                        <i class="fa fa-caret-right" style="margin-right: 6px;"></i>
+                                        Hello @user.email
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </header>
+                    <h2 class="menu-title">Menu</h2>
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Products")">
+                            <img class="icon" src="@Url.Content("~/images/basic/products1-min.png")">
+                            Products</a></li>
+                        <li><a href="@Url.Action("About", "Home")">
+                            <img class="icon" src="@Url.Content("~/images/basic/about_us-min.png")">
+                            About Us</a></li>
+                        <li><a href="@Url.Action("Cooperation", "Home")">
+                            <img class="icon" src="@Url.Content("~/images/basic/cooperation1-min.png")">
+                            Cooperation</a></li>
+                        <li>
+                             <a href="@Url.Action("Support", "Home")">
+                                 <img class="icon" src="@Url.Content("~/images/basic/support1-min.png")">
+                                 Support
+                             </a>
+                         </li>
+                         <li>
+                             <a href="@Url.Action("GhostProduction", "Home")">
+                                 <img class="icon" src="@Url.Content("~/images/basic/ghost1-min.png")">
+                                 Ghost Production
+                             </a>
+                        </li>
+                        @if (Session["userLogin"]!=null)
+                        {
+                        <li><a href="@Url.Action("Index", "Profile")">Profile</a></li>
+                        }
+                        @*<li><a href="#">Sequencer</a></li>*@
+                        @*<li><a href="#">Earn Bonuses</a></li>*@
+                    </ul>
+                    <h2 class="menu-title">Special Search By</h2>
+                        @Html.Action("MobileMenu", "Home")
+                    <h2 class="menu-title">User Profile</h2>
+                    <ul>
+                        @if (Session["userLogin"] != null)
+                        {
+                        <li>
+                            <a href="@Url.Action("Index", "Profile")">
+                            <img class="icon" src="@Url.Content("~/images/basic/profile1-min.png")">
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <img class="icon" src="@Url.Content("~/images/basic/log-out1-min.png")">
+                                Log Out
+                            </a>
+                        </li>
+                        }
+                        else
+                        {
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#ModalLogIn">
+                            <img class="icon" src="@Url.Content("~/images/basic/sign in1-min.png")">
+                            Log In
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#ModalSignUp">
+                                <img class="icon" src="@Url.Content("~/images/basic/sign in1-min.png")">
+                                Sign Up
+                            </a>
+                        </li>
+                        }
+                        <li>
+                            <a href="@Url.Action("Cart", "Products")">
+                                <img class="icon" src="@Url.Content("~/images/basic/cart1-min.png")">
+                                Cart
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
+                </section>
+                <div class="col-sm-12 main-container">
+                    <section class="container">
+                        <header class="row header-top padding-lr">
+                            <section class="header-line">
+                                <section class="hidden-md hidden-lg mobile-menu">
+                                    <div class="btn-menu"><i class="fa fa-bars"></i></div>
+                                </section>
+                                <div class="row logo-wrap padding-lr">
+                                    @Html.Action("HeaderPartial", "Home");
+                                    <div class="col-md-pull-6 col-md-5">
+                                        <a class="header-logo" href="@Url.Action("Index", "Home")" rel="home" title="Home">
+                                            <img class="img-responsive" src="@Url.Content("~/images/basic/logo.png")" alt="Up Down Sound">
+                                        </a>
+                                    </div>
+                                </div>
+                                <section class="hidden-md hidden-lg">
+                                    <a href="@Url.Action("Cart", "Products")" title="Cart">
+                                        <img src="@Url.Content("~/images/basic/cart.png")" alt="Cart" class="btn-cart">
+                                    </a>
+                                </section>
+                                </section> <!--end section.header-line-->
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-md-push-3 p-0">
+                                        <section class="header-search">
+                                            @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { id = "formid" }))
+                                            {
+                                            <input type="text" id="in-search" name="search" class="placeholder" data-placeholder="I'm looking for ..." value="I'm looking for ...">
+                                            <button class="btn-search" type="submit" title="Go"><i class="fa fa-search"></i></button>
+                                            }
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="row hidden-xs hidden-sm">
+                                    <ul class="nav-menu">
+                                        <li class="btn-nav-menu"><a href="@Url.Action("Index", "Products")">Products</a></li>
+                                        <li class="btn-nav-menu"><a href="@Url.Action("About", "Home")">About Us</a></li>
+                                        <li class="btn-nav-menu"><a href="@Url.Action("Cooperation", "Home")">Cooperation</a></li>
+                                        <li class="btn-nav-menu"><a href="@Url.Action("Support", "Home")">Support</a></li>
+                                        <li class="btn-nav-menu"><a href="@Url.Action("GhostProduction", "Home")">Ghost Production</a></li>
+                                        @if (Session["userLogin"]!=null)
+                                        {
+                                        <li class="btn-nav-menu"><a href="@Url.Action("Index", "Profile")">Profile</a></li>
+                                        }
+                                        @*<li class="btn-nav-menu"><a  >Sequencer</a></li>*@
+                                        @*<li class="btn-nav-menu"><a  >Earn Bonuses</a></li>*@
+                                    </ul>
+                                </div>
+                                </header> <!--end header-->
+                                @RenderBody()
+                                @Html.Action("FooterPartial", "Home")
+                                </section> <!-- page container -->
+                            </div>
+                        </div>
+                        @Html.Partial("_ImageLoader")
+                        
+                        <!-- Sign up modal -->
+                    <div class="modal fade" id="ModalSignUp" tabindex="-1" role="dialog" aria-labelledby="ModalSignUp">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title">Sign Up</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group connect-social-buttons">
+                                            <h4 class="text-center">Log in with social account</h4>
+                                            <a href="javascript:fbclick();" 
+                                               class="social-button facebook">
+                                               <img src="@Url.Content("~/images/basic/facebook-btn-large.jpg")">
+                                            </a>
+                                            <a class="social-button google">
+                                                <span class="g-signin"
+                                                      data-callback="signinCallback"
+                                                      data-clientid="41727705091-5japvfsj92ofbm7idnl2ietscu42oa69.apps.googleusercontent.com"
+                                                      data-cookiepolicy="single_host_origin"
+                                                      data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                                                      data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email">
+                                                      <img src="@Url.Content("~/images/basic/google-btn-large.jpg")">
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <h4 class="text-center">Or</h4>
+                                        <div class="col-md-6 form-group">
+                                            <input type="text" id="isignup-fname" class="form-control" placeholder="First Name" required>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <input type="text" id="isignup-lname" class="form-control" placeholder="Last Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" id="isignup-email" class="form-control" placeholder="Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" id="isignup-password" class="form-control" placeholder="Password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" id="isignup-cpassword" class="form-control" placeholder="Confirm Password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-terms">
+                                                <input type="checkbox" id="isignup-terms">
+                                                I agree to <a href="#">Up Down Sound</a> terms.
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-emailupdates">
+                                                <input type="checkbox" id="isignup-emailupdates" checked="checked">
+                                                Yes, send me email updates about Up Down Sound.
+                                            </label>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-default" onclick="signupuser();">Sign Up</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Sign up modal-->
+
+                    <!-- Log in modal-->
+                    <div class="modal fade" id="ModalLogIn" tabindex="-1" role="dialog" aria-labelledby="ModalLogIn">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title">Log In</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group connect-social-buttons">
+                                            <h4 class="text-center">Log in with social account</h4>
+                                            <a href="javascript:fbclick();" 
+                                               class="social-button facebook">
+                                               <img src="@Url.Content("~/images/basic/facebook-btn-large.jpg")">
+                                            </a>
+                                            <a class="social-button google">
+                                                <span class="g-signin"
+                                                      data-callback="signinCallback"
+                                                      data-clientid="41727705091-5japvfsj92ofbm7idnl2ietscu42oa69.apps.googleusercontent.com"
+                                                      data-cookiepolicy="single_host_origin"
+                                                      data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                                                      data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email">
+                                                      <img src="@Url.Content("~/images/basic/google-btn-large.jpg")">
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <h4 class="text-center">Or</h4>
+                                        <div class="form-group">
+                                            <input type="email" id="isignin-email" class="form-control" placeholder="Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" id="isignin-password" class="form-control" placeholder="Password" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="isignin-rememberme">
+                                                <input type="checkbox" id="isignin-rememberme">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <a id="forgot-password" href="#">- Forgot your password?</a>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-default" onclick="loginuser();">Log In</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Log in modal-->
+                                
+                                <script type="text/javascript">
+                                (function () {
+                                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                po.src = 'https://apis.google.com/js/client:plusone.js';
+                                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                })();
+                                </script>
+                            </body>
+                        </html>
+<script>
+        $(function () {
+                $(".buy-product").click(function () {
+                        var obj = this;
+                        var id = $(obj).closest("li").attr("id");
+                        if (!$(obj).hasClass('buy-product')) {
+                                return;
+                        }
+                        $.ajax({
+                                url: '@Url.Action("AddToCard", "Products")',
+                                type: 'POST',
+                                //async: true,
+                                data: { id: id },
+                                dataType: "text",
+                                beforeSend: function () {
+                                        loader(true);
+                                },
+                                success: function (data) {
+                                        $('#cart').text(data + "$");
+                                        $(obj).removeClass('buy-product');
+                                        $(obj).attr('onclick', 'javascript:void(0);');
+                                        $(obj).attr('title', 'Added to cart');
+                                        $(obj).css('cursor', 'default');
+                                        loader(false);
+                                }
+                        });
+                });
+        });
+
+        function loginuser() {
+                var emailInput = $("#isignin-email");
+                var passwordInput = $("#isignin-password");
+                email = $(emailInput).val();
+                password = $(passwordInput).val();
+                $.ajax({
+                        url: '@Url.Action("Login", "Account")',
+                        type: 'POST',
+                        data: { email: email, password: password },
+                beforeSend: function () {
+                },
+                success: function (data) {
+                        if (data == true || data == "True" || data == "true") {
+                                location.reload();
+                        }
+                },
+                error: function (request, status, error) {
+                        alert("Error");
+                }
+                });
+        }
+        function signupuser() {
+                var fname = '';
+                var lname = '';
+                var email = '';
+                var password = '';
+
+                var fnameInput = $("#isignup-fname");
+                var lnameInput = $("#isignup-lname");
+                var emailInput = $("#isignup-email");
+                var passwordInput = $("#isignup-password");
+                var passwordConfirmInput = $("#isignup-cpassword");
+                if ($(passwordInput).val() != $(passwordConfirmInput).val()) {
+                        return;
+                }
+                fname = $(fnameInput).val();
+                lname = $(lnameInput).val();
+                email = $(emailInput).val();
+                password = $(passwordInput).val();
+                $.ajax({
+                        url: '@Url.Action("SignUp", "Account")',
+                        type: 'POST',
+                        data: { fname: fname, lname: lname, email: email, password: password },
+                success: function (data) {
+                        if (data == true || data == "True" || data == "true") {
+                        location.reload();
+                        }
+                },
+                error: function (request, status, error) {
+                        alert("Error");
+                }
+                });
+        }
+</script>

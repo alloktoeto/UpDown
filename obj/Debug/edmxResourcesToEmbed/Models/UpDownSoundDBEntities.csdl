@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UpDownDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="UpDownDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="articles" EntityType="UpDownDBModel.article" />
+    <EntitySet Name="authors" EntityType="UpDownDBModel.author" />
+    <EntitySet Name="carusel_images" EntityType="UpDownDBModel.carusel_images" />
+    <EntitySet Name="countries" EntityType="UpDownDBModel.country" />
+    <EntitySet Name="currencies" EntityType="UpDownDBModel.currency" />
+    <EntitySet Name="downloads" EntityType="UpDownDBModel.download" />
+    <EntitySet Name="effects" EntityType="UpDownDBModel.effect" />
+    <EntitySet Name="formats" EntityType="UpDownDBModel.format" />
+    <EntitySet Name="genres" EntityType="UpDownDBModel.genre" />
+    <EntitySet Name="instruments" EntityType="UpDownDBModel.instrument" />
+    <EntitySet Name="languages" EntityType="UpDownDBModel.language" />
+    <EntitySet Name="menus" EntityType="UpDownDBModel.menu" />
+    <EntitySet Name="pages" EntityType="UpDownDBModel.page" />
+    <EntitySet Name="pictures" EntityType="UpDownDBModel.picture" />
+    <EntitySet Name="product_statuses" EntityType="UpDownDBModel.product_statuses" />
+    <EntitySet Name="products" EntityType="UpDownDBModel.product" />
+    <EntitySet Name="sounds" EntityType="UpDownDBModel.sound" />
+    <EntitySet Name="SubGenres" EntityType="UpDownDBModel.SubGenre" />
+    <EntitySet Name="transactions" EntityType="UpDownDBModel.transaction" />
+    <EntitySet Name="users" EntityType="UpDownDBModel.user" />
+    <AssociationSet Name="FK_products_authors" Association="UpDownDBModel.FK_products_authors">
+      <End Role="authors" EntitySet="authors" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_countries_languages" Association="UpDownDBModel.FK_countries_languages">
+      <End Role="languages" EntitySet="languages" />
+      <End Role="countries" EntitySet="countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_currencies_countries" Association="UpDownDBModel.FK_currencies_countries">
+      <End Role="countries" EntitySet="countries" />
+      <End Role="currencies" EntitySet="currencies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_effects" Association="UpDownDBModel.FK_products_effects">
+      <End Role="effects" EntitySet="effects" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_genres" Association="UpDownDBModel.FK_products_genres">
+      <End Role="genres" EntitySet="genres" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubGenres_genres" Association="UpDownDBModel.FK_SubGenres_genres">
+      <End Role="genres" EntitySet="genres" />
+      <End Role="SubGenres" EntitySet="SubGenres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_instruments" Association="UpDownDBModel.FK_products_instruments">
+      <End Role="instruments" EntitySet="instruments" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_pictures" Association="UpDownDBModel.FK_products_pictures">
+      <End Role="pictures" EntitySet="pictures" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_product_statuses" Association="UpDownDBModel.FK_products_product_statuses">
+      <End Role="product_statuses" EntitySet="product_statuses" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_sounds" Association="UpDownDBModel.FK_products_sounds">
+      <End Role="sounds" EntitySet="sounds" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="formatsToProducts" Association="UpDownDBModel.formatsToProducts">
+      <End Role="formats" EntitySet="formats" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="article">
+    <Key>
+      <PropertyRef Name="articleID" />
+    </Key>
+    <Property Name="articleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="txt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="dateUpload" Type="DateTime" />
+    <Property Name="dateUpdate" Type="DateTime" />
+    <Property Name="authorID" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="page" Type="Int32" />
+    <Property Name="view" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="author">
+    <Key>
+      <PropertyRef Name="authorID" />
+    </Key>
+    <Property Name="authorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="UpDownDBModel.FK_products_authors" FromRole="authors" ToRole="products" />
+  </EntityType>
+  <EntityType Name="carusel_images">
+    <Key>
+      <PropertyRef Name="imageID" />
+    </Key>
+    <Property Name="imageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="url" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="alt" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="text" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="languageID" Type="Int32" />
+    <NavigationProperty Name="language" Relationship="UpDownDBModel.FK_countries_languages" FromRole="countries" ToRole="languages" />
+    <NavigationProperty Name="currencies" Relationship="UpDownDBModel.FK_currencies_countries" FromRole="countries" ToRole="currencies" />
+  </EntityType>
+  <EntityType Name="currency">
+    <Key>
+      <PropertyRef Name="code" />
+    </Key>
+    <Property Name="code" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="countryID" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+    <Property Name="icon" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="false" />
+    <Property Name="gate" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+    <NavigationProperty Name="country" Relationship="UpDownDBModel.FK_currencies_countries" FromRole="currencies" ToRole="countries" />
+  </EntityType>
+  <EntityType Name="download">
+    <Key>
+      <PropertyRef Name="downloadID" />
+    </Key>
+    <Property Name="downloadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" />
+    <Property Name="userID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="effect">
+    <Key>
+      <PropertyRef Name="effectID" />
+    </Key>
+    <Property Name="effectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="UpDownDBModel.FK_products_effects" FromRole="effects" ToRole="products" />
+  </EntityType>
+  <EntityType Name="format">
+    <Key>
+      <PropertyRef Name="formatID" />
+    </Key>
+    <Property Name="formatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="UpDownDBModel.formatsToProducts" FromRole="formats" ToRole="products" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="genreID" />
+    </Key>
+    <Property Name="genreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="UpDownDBModel.FK_products_genres" FromRole="genres" ToRole="products" />
+    <NavigationProperty Name="SubGenres" Relationship="UpDownDBModel.FK_SubGenres_genres" FromRole="genres" ToRole="SubGenres" />
+  </EntityType>
+  <EntityType Name="instrument">
+    <Key>
+      <PropertyRef Name="instrumentID" />
+    </Key>
+    <Property Name="instrumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="UpDownDBModel.FK_products_instruments" FromRole="instruments" ToRole="products" />
+  </EntityType>
+  <EntityType Name="language">
+    <Key>
+      <PropertyRef Name="languageID" />
+    </Key>
+    <Property Name="languageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="countries" Relationship="UpDownDBModel.FK_countries_languages" FromRole="languages" ToRole="countries" />
+  </EntityType>
+  <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="menuID" />
+    </Key>
+    <Property Name="menuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="show" Type="Boolean" />
+    <Property Name="action" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="controller" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="page">
+    <Key>
+      <PropertyRef Name="pageID" />
+    </Key>
+    <Property Name="pageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="txt" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="picture">
+    <Key>
+      <PropertyRef Name="pictureID" />
+    </Key>
+    <Property Name="pictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="category" Type="Int32" />
+    <NavigationProperty Name="products" Relationship="UpDownDBModel.FK_products_pictures" FromRole="pictures" ToRole="products" />
+  </EntityType>
+  <EntityType Name="product_statuses">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="cl" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="UpDownDBModel.FK_products_product_statuses" FromRole="product_statuses" ToRole="products" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="prodID" />
+    </Key>
+    <Property Name="prodID" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="authorID" Type="Int32" Nullable="false" />
+    <Property Name="instrumentID" Type="Int32" />
+    <Property Name="genreID" Type="Int32" />
+    <Property Name="soundID" Type="Int32" />
+    <Property Name="dateUpload" Type="DateTime" Nullable="false" />
+    <Property Name="size" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="url" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="downloads" Type="Int32" />
+    <Property Name="views" Type="Int32" />
+    <Property Name="price" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+    <Property Name="price_New" Type="Decimal" Nullable="false" Precision="12" Scale="2" />
+    <Property Name="pictureID" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="effectID" Type="Int32" />
+    <Property Name="prod_status" Type="Int32" />
+    <NavigationProperty Name="author" Relationship="UpDownDBModel.FK_products_authors" FromRole="products" ToRole="authors" />
+    <NavigationProperty Name="effect" Relationship="UpDownDBModel.FK_products_effects" FromRole="products" ToRole="effects" />
+    <NavigationProperty Name="genre" Relationship="UpDownDBModel.FK_products_genres" FromRole="products" ToRole="genres" />
+    <NavigationProperty Name="instrument" Relationship="UpDownDBModel.FK_products_instruments" FromRole="products" ToRole="instruments" />
+    <NavigationProperty Name="picture" Relationship="UpDownDBModel.FK_products_pictures" FromRole="products" ToRole="pictures" />
+    <NavigationProperty Name="product_statuses" Relationship="UpDownDBModel.FK_products_product_statuses" FromRole="products" ToRole="product_statuses" />
+    <NavigationProperty Name="sound" Relationship="UpDownDBModel.FK_products_sounds" FromRole="products" ToRole="sounds" />
+    <NavigationProperty Name="formats" Relationship="UpDownDBModel.formatsToProducts" FromRole="products" ToRole="formats" />
+  </EntityType>
+  <EntityType Name="sound">
+    <Key>
+      <PropertyRef Name="soundID" />
+    </Key>
+    <Property Name="soundID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="products" Relationship="UpDownDBModel.FK_products_sounds" FromRole="sounds" ToRole="products" />
+  </EntityType>
+  <EntityType Name="SubGenre">
+    <Key>
+      <PropertyRef Name="subGenreId" />
+    </Key>
+    <Property Name="subGenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subGenreName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="subGenreGenreId" Type="Int32" />
+    <NavigationProperty Name="genre" Relationship="UpDownDBModel.FK_SubGenres_genres" FromRole="SubGenres" ToRole="genres" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="transID" />
+    </Key>
+    <Property Name="transID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" />
+    <Property Name="gross" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="token" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Guid" Nullable="false" />
+    <Property Name="firstname" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="lastname" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="birthdate" Type="DateTime" />
+    <Property Name="status" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="phone" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="phone2" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="dateRegistry" Type="DateTime" />
+    <Property Name="lastAuth" Type="DateTime" />
+    <Property Name="idAdmin" Type="Boolean" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_products_authors">
+    <End Role="authors" Type="UpDownDBModel.author" Multiplicity="1" />
+    <End Role="products" Type="UpDownDBModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="authors">
+        <PropertyRef Name="authorID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="authorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_countries_languages">
+    <End Role="languages" Type="UpDownDBModel.language" Multiplicity="0..1" />
+    <End Role="countries" Type="UpDownDBModel.country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="languages">
+        <PropertyRef Name="languageID" />
+      </Principal>
+      <Dependent Role="countries">
+        <PropertyRef Name="languageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_currencies_countries">
+    <End Role="countries" Type="UpDownDBModel.country" Multiplicity="1" />
+    <End Role="currencies" Type="UpDownDBModel.currency" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="countries">
+        <PropertyRef Name="code" />
+      </Principal>
+      <Dependent Role="currencies">
+        <PropertyRef Name="countryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_effects">
+    <End Role="effects" Type="UpDownDBModel.effect" Multiplicity="0..1" />
+    <End Role="products" Type="UpDownDBModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="effects">
+        <PropertyRef Name="effectID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="effectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_genres">
+    <End Role="genres" Type="UpDownDBModel.genre" Multiplicity="0..1" />
+    <End Role="products" Type="UpDownDBModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genres">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="genreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubGenres_genres">
+    <End Role="genres" Type="UpDownDBModel.genre" Multiplicity="0..1" />
+    <End Role="SubGenres" Type="UpDownDBModel.SubGenre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genres">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="SubGenres">
+        <PropertyRef Name="subGenreGenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_instruments">
+    <End Role="instruments" Type="UpDownDBModel.instrument" Multiplicity="0..1" />
+    <End Role="products" Type="UpDownDBModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="instruments">
+        <PropertyRef Name="instrumentID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="instrumentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_pictures">
+    <End Role="pictures" Type="UpDownDBModel.picture" Multiplicity="0..1" />
+    <End Role="products" Type="UpDownDBModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pictures">
+        <PropertyRef Name="pictureID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="pictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_product_statuses">
+    <End Role="product_statuses" Type="UpDownDBModel.product_statuses" Multiplicity="0..1" />
+    <End Role="products" Type="UpDownDBModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product_statuses">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="prod_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_sounds">
+    <End Role="sounds" Type="UpDownDBModel.sound" Multiplicity="0..1" />
+    <End Role="products" Type="UpDownDBModel.product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sounds">
+        <PropertyRef Name="soundID" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="soundID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="formatsToProducts">
+    <End Role="formats" Type="UpDownDBModel.format" Multiplicity="*" />
+    <End Role="products" Type="UpDownDBModel.product" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,25 @@
+﻿@using UpDown.Models
+
+<div class="hidden-xs hidden-sm col-md-3">
+                        <h2 class="title-block">Popular tags</h2>
+                        <div class="row popular-tags">
+                        @{
+                            List<tag> tags = (List<tag>)ViewBag.Tags;
+                            }
+
+                            @for (int i = 1; i <= tags.Count; i++)
+                            {
+                                if (i%3==0)
+                                {
+                                    Html.Raw("<div class='col-md-12'>");
+                                }
+
+                                <div class="col-md-4 pad" onclick='window.location.href="@tags[i-1].url"'><a href="@tags[i-1].url">@tags[i-1].name</a></div>
+                                
+                                if (i % 3 == 0)
+                                {
+                                    Html.Raw("</div>");
+                                }
+                            }
+                        </div>
+                    </div>

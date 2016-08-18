@@ -1,0 +1,50 @@
+﻿@{
+    bool isOpened = true;
+    }
+
+
+<div class="row top-music-player-wrap @(isOpened ? "" : "ishidden")">
+    <div class="container">
+        <div id="top-music-player">
+            <div class="col-xs-12 col-sm-12 col-md-3 tmp-controls-wrap1">
+                <ul class="tmp-controls text-center">
+                    <li class="tmp-wrap"><i id="tmp-prev" onclick="prevAudio()" title="Previous Audio" class="fa fa-backward"></i></li>
+                    <li class="tmp-wrap"><i id="tmp-play" onclick="playAudio()" title="Play Audio" class="fa fa-play"></i></li>
+                    <li class="tmp-wrap"><i id="tmp-next" onclick="nextAudio()" title="Next Audio" class="fa fa-forward"></i></li>
+                    <li class="tmp-wrap"><i id="tmp-repeat" onclick="repeatAudio()" title="Repeat Audio ON" class="fa fa-repeat"></i></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 tmp-controls-wrap2">
+                <div class="hidden">
+                    <audio id="hidden-player" src="" controls></audio>
+                    <select name="hidden-mylist" id="hidden-mylist"></select>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-1 tmp-img-wrap">
+                    <img class="tmp-img" src="@Url.Content("~/images/basic/logo-arrows-bw.png")">
+                </div>
+                <div class="col-xs-9 col-sm-9 col-md-8" style="margin-left: 1em;" >
+                    <div class="tmp-title-wrap">
+                    	<div class="tmp-title">
+	                        <h3 class="tmp-audio-author"></h3>
+	                        <span class="tmp-audio-library">PLEASE SELECT AN AUDIO</span>
+	                    </div>
+                        <span class="tmp-audio-length">00:00:00</span>
+                    </div>
+                    <div class="tmp-timing-wrap">
+                        <div id="tmp-timing-slider"></div>
+                    </div>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-2">
+                    <div class="tmp-volume-wrap">
+                        <div id="tmp-volume-slider" title="Volume"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 tmp-controls-wrap3">
+				<ul>
+                	<li class="tmp-wrap"><i id="tmp-slide" onclick="slidePlayer()" title= '@(isOpened? "Slide Down Player" : "Slide Up Player")' class='fa @(isOpened ? "fa-angle-up" : "fa-angle-down") '></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>

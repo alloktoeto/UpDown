@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <title>Products | Up Down Sound Admin</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+        <link href="@Url.Content("~/images/basic/logo-arrows.png")" rel="shortcut icon" type="image/png"/>
+
+        @Styles.Render("~/libs/bootstrap/bootstrap.css")
+        @Styles.Render("~/Content/css/libs/jquery/css/jquery-ui.css")
+        @Styles.Render("~/libs/jquery/css/jquery-datatable.css")
+        @Styles.Render("~/libs/font-awesome/css/font-awesome.css")
+        @Styles.Render("~/libs/wimpy/wimpy.css")
+        @Styles.Render("~/libs/magnific-popup/magnific-popup.css")
+        @Styles.Render("~/Content/css/ui.dropdownchecklist.themeroller.css")
+        @Styles.Render("~/Content/css/admin/default.css")
+
+        @Scripts.Render("~/libs/jquery/js/jquery.js")
+        @Scripts.Render("~/libs/jquery/js/jquery-ui.js")
+        @Scripts.Render("~/libs/jquery/js/jquery-datatable.js")
+        @Scripts.Render("~/libs/bootstrap/bootstrap.js")
+        @Scripts.Render("~/libs/wimpy/wimpy.js")
+        @Scripts.Render("~/Scripts/ui.dropdownchecklist-1.4-min.js")
+        @Scripts.Render("~/Scripts/admin/util.js")
+        @Scripts.Render("~/Scripts/admin/common.js")
+    </head>
+    <body>
+    <section class="container-fluid">
+        <section class="row">
+            <section class="col-md-2" style="z-index:1;">
+                <nav class="main-nav-wrap">
+                    <ul class="main-nav-top">
+                        <li class="main-nav-logo">
+                            <img src="@Url.Content("~/images/basic/logo.png")" alt="Up Down Sound Admin">
+                        </li>
+                        <li class="main-nav-profile">
+                            <div class="col-md-4 photo-wrap">
+                                <img src="@Url.Content("~/images/admin/users/u90.jpg")" alt="User's Photo">
+                            </div>
+                            <div class="col-md-8 info-wrap">
+                                <span>Administrator</span>
+                            </div>
+                        </li>
+                            <li class="title">MENU</li>
+                        <li class="menu-nav">
+                            <ul>
+                                <li>
+                                    <h3>
+                                        <a href="@Url.Action("Dashboard", "Admin")">
+                                            <i class="fa fa-tachometer"></i>
+                                            Dashboard
+                                        </a>
+                                    </h3>
+                                </li>
+                                @*<li>
+                                    <h3>
+                                        <i class="fa fa-newspaper-o"></i>
+                                        Content <span class="fa fa-angle-"></span>
+                                    </h3>
+                                    <ul>
+                                        
+                                    </ul>
+                                </li>*@
+                                <li>
+                                    <h3>
+                                        <i class="fa fa-newspaper-o"></i>
+                                        Content <span class="fa fa-angle-"></span>
+                                    </h3>
+                                    <ul>
+                                        <li><a href="@Url.Action("Products", "Admin")">Products</a></li>
+                                        <li><a href="@Url.Action("Tags", "Admin")">Tags</a></li>
+                                        <li><a href="@Url.Action("Genres", "Admin")">Genres</a></li>
+                                        <li><a href="@Url.Action("Instruments", "Admin")">Instruments</a></li>
+                                        <li><a href="@Url.Action("Effects", "Admin")">Effects</a></li>
+                                        <li><a href="@Url.Action("Formats", "Admin")">Formats</a></li>
+                                        <li><a href="@Url.Action("CarouselImages", "Admin")">Carousel</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                    <a href="@Url.Action("Statistics", "Admin")">
+                                            <i class="fa fa-pie-chart"></i>
+                                            Statistics
+                                        </a>
+                                    </h3>
+                                </li>
+                                <li>
+                                    <h3>
+                                        <i class="fa fa-inbox"></i>
+                                        Mail <span class="fa fa-angle-"></span>
+                                    </h3>
+                                    <ul>
+                                        <li><a href="@Url.Action("Mail", "Admin")">Inbox</a></li>
+                                        <li><a href="#">Sent</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h3>
+                                    <a href="@Url.Action("Users1", "Admin")">
+                                            <i class="fa fa-users"></i>
+                                            Users 
+                                        </a>
+                                        
+                                    </h3>
+                                    
+                                </li>
+                                <li>
+                                    <h3>
+                                    <a href="@Url.Action("Settings", "Admin")">
+                                            <i class="fa fa-cog"></i>
+                                            Settings <span class="fa fa-angle-"></span>
+                                        </a>
+                                        
+                                    </h3>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+            <section class="col-md-10">
+                <section class="header-top-wrap">
+                    <section class="header-top-tools col-md-12">
+                        <div class="actions pull-right">
+                            <button class="btn btn-default"><i class="fa fa-sign-out"></i> Log Out</button>
+                        </div>
+                    </section>
+
+                    @*<section class="header-top-page-title col-md-12">
+                        <h2>Products</h2>
+                    </section>
+                    <section class="header-top-breadcrumbs">
+                        <ol class="breadcrumb">
+                          <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                          <li>Content</li>
+                          <li class="active">Products</li>
+                        </ol>
+                    </section>*@
+                </section>
+@RenderBody()
+
+ </section>
+        </section>
+    </section>
+
+
+        </body>
+</html>

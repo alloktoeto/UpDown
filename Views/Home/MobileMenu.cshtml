@@ -1,0 +1,137 @@
+﻿  @using UpDown.Models
+  
+  <ul>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#ModalSpecialSearchInstruments">
+                                <img class="icon" src="@Url.Content("~/images/basic/instruments-min.png")">
+                                Instruments
+                            </a>
+
+                            <!-- More products modal -->
+                            <div class="modal fade" id="ModalSpecialSearchInstruments" tabindex="-1" role="dialog" aria-labelledby="ModalSpecialSearchInstruments">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title">Instruments</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="more-products-wrap">
+                                            @for (int i = 0; i < ((List<instrument>)ViewBag.Instruments).Count; i++)
+                                            {
+                                             <li>
+                                                <a href="@Url.Action("Index", "Products", 
+                                                        new { instrument = ((List<instrument>)ViewBag.Instruments)[i].instrumentID })">
+                                                        @(((List<instrument>)ViewBag.Instruments)[i].name)
+                                                </a>
+                                            </li>   
+                                            }
+                                                    @*<li>
+                                                        <a href="#">
+                                                            Name
+                                                        </a>
+                                                    </li>*@
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /More produc-ts modal-->
+
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#ModalSpecialSearchFormats">
+                                <img class="icon" src="@Url.Content("~/images/basic/formats-min.png")">
+                                Formats
+                            </a>
+                            <div class="modal fade" id="ModalSpecialSearchFormats" tabindex="-1" role="dialog" aria-labelledby="ModalSpecialSearchFormats">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title">Formats</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="more-products-wrap">
+                                                    @for (int i = 0; i < ((List<format>)ViewBag.Formats).Count; i++)
+                                                    {
+                                                        <li>
+                                                            <a href="@Url.Action("Index", "Products", 
+                                                                    new { format = ((List<format>)ViewBag.Formats)[i].formatID })">
+                                                                    @(((List<format>)ViewBag.Formats)[i].name)
+                                                            </a>
+                                                        </li>   
+                                                    }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#ModalSpecialSearchPresets">
+                                <img class="icon" src="@Url.Content("~/images/basic/presets-min.png")">
+                                Presets
+                            </a>
+                            <div class="modal fade" id="ModalSpecialSearchPresets" tabindex="-1" role="dialog" aria-labelledby="ModalSpecialSearchPresets">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title">Presets</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="more-products-wrap">
+                                                    @for (int i = 0; i < ((List<effect>)ViewBag.Effects).Count; i++)
+                                                    {
+                                                        <li>
+                                                            <a href="@Url.Action("Index", "Products", 
+                                                                    new { effect = ((List<effect>)ViewBag.Effects)[i].effectID })">
+                                                                        @(((List<effect>)ViewBag.Effects)[i].name)
+                                                            </a>
+                                                        </li>   
+                                                    }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#ModalSpecialSearchGenres">
+                                <img class="icon" src="@Url.Content("~/images/basic/genres-min.png")">
+                                Genres
+                            </a>
+                            <div class="modal fade" id="ModalSpecialSearchGenres" tabindex="-1" role="dialog" aria-labelledby="ModalSpecialSearchGenres">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <h4 class="modal-title">Genres</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="more-products-wrap">
+                                                    @for (int i = 0; i < ((List<genre>)ViewBag.Genres).Count; i++)
+                                                    {
+                                                        <li>
+                                                            <a href="@Url.Action("Index", "Products", 
+                                                                    new { genre = ((List<genre>)ViewBag.Genres)[i].genreID})">
+                                                                        @(((List<genre>)ViewBag.Genres)[i].name)
+                                                            </a>
+                                                        </li>   
+                                                    }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>

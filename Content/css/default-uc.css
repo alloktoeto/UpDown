@@ -1,0 +1,63 @@
+
+
+body{
+    position: relative;
+    background-color: #5E5E5E;
+    background-image: url('../images/basic/bg.png');
+    background-position: center center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: auto; 
+    box-shadow: rgb(43, 43, 43) -5px 0px 8px;
+}
+
+img{
+    width:100%;
+}
+
+/*MAIN HEADER*/
+
+label[for="input-terms"] a{ 
+    text-decoration: underline; color: highlight; 
+}
+.header-top { 
+    padding-bottom: 15px; 
+    background-color:#2A2B2B;
+    overflow:hidden;
+}
+.header-line{ 
+    padding: 58px 0 27px 0; 
+    margin-bottom: 15px;
+    border-bottom: 1px solid #A9A9A9; 
+        height: 130px;
+}
+.header-logo{ 
+    margin-top: -3px;
+    z-index: 0;
+    text-align: center;
+}
+.header-logo img{
+    height:33px;
+    max-width: 459px;
+
+}
+
+.main-content{
+    margin-top: 0px;
+    padding-top: 33vh;
+    height: 100vh;
+    text-align: center;
+    background-color: #5F5D58;
+}
+.padding-lr{
+    padding-left: 12px;
+    padding-right: 12px
+}
+.uc-message h2{ 
+    font-size: 3em; 
+    color:#74D3D5; 
+}
+.uc-message p{ 
+    font-size: 2.4em; 
+    color: white;  
+}

@@ -1,0 +1,62 @@
+﻿@using UpDown.Models
+
+<footer>
+       
+            <section class="footer-menu row">
+                <ul>
+                    <li class="title"><h4>Instruments</h4></li>
+                    @for (int i = 0; i < ((List<instrument>)ViewBag.Instruments).Count; i++)
+                    {
+                        if (i>=117)
+                        {
+                            break;
+                        }
+                     <li><a href="@Url.Action("Index", "Products", new { instrument = ((List<instrument>)ViewBag.Instruments)[i].instrumentID })">@(((List<instrument>)ViewBag.Instruments)[i].name)</a></li>   
+                    }
+                </ul>
+                <ul>
+                    <li class="title"><h4>Formats</h4></li>
+                    @for (int i = 0; i < ((List<format>)ViewBag.Formats).Count; i++)
+                    {
+                        if (i>=117)
+                        {
+                            break;
+                        }
+                     <li><a href="@Url.Action("Index", "Products", new { format = ((List<format>)ViewBag.Formats)[i].formatID })">@(((List<format>)ViewBag.Formats)[i].name)</a></li>   
+                    }
+                </ul>
+                <ul>
+                    <li class="title"><h4>Presets</h4></li>
+                    @for (int i = 0; i < ((List<effect>)ViewBag.Effects).Count; i++)
+                    {
+                        if (i>=117)
+                        {
+                            break;
+                        }
+                     <li><a href="@Url.Action("Index", "Products", new { effect = ((List<effect>)ViewBag.Effects)[i].effectID })">@(((List<effect>)ViewBag.Effects)[i].name)</a></li>   
+                    }
+                </ul>
+                <ul>
+                    <li class="title"><h4>Genres</h4></li>
+                    @for (int i = 0; i < ((List<genre>)ViewBag.Genres).Count; i++)
+                    {
+                        if (i>=117)
+                        {
+                            break;
+                        }
+                     <li><a href="@Url.Action("Index", "Products", new { genre = ((List<genre>)ViewBag.Genres)[i].genreID})">@(((List<genre>)ViewBag.Genres)[i].name)</a></li>   
+                    }
+                </ul>
+            </section> <!--end section.footer-menu-->
+            
+            <section class="row">
+                <section class="col-xs-12 col-sm-12 col-md-12 footer-copy-rights">
+                    <a class="logo footer-logo"  href="@Url.Action("Index", "Home")"></a>
+                    <section>
+                    <span class="copyr-year">Copyright © 2016</span>
+                    <span>All rights reserved.</span>
+                    </section>
+                </section>
+            </section>
+
+        </footer>

@@ -1,0 +1,88 @@
+﻿@using UpDown.Models
+@model List<product>
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<section class="main-content">
+                    <section class="row">
+                        <section class="col-md-12 panel products-wrap bgc-wrap">
+                            <section class="panel-header">
+                                <h3 class="header-title">Products List</h3>
+                            </section>
+                            <section class="panel-body">
+                                <section class="action-bar">
+                                    <button class="btn btn-default btn-add-new">
+                                        <a href="@Url.Action("Add", "Admin")">
+                                            <i class="fa fa-plus"></i> Add New
+                                        </a>
+                                    </button>
+                                </section>
+                                <table class="table recent-activities-table order-column" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Artist</th>
+                                            <th>Genre</th>
+                                            <th>Instrument</th>
+                                            <th>Price($)</th>
+                                            <th>Date</th>
+                                            <th>Displayed</th>
+                                            <th>Order By</th>
+                                            <th>&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for (int i = 1; i <= Model.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@Model[i - 1].name</td>
+                                            <td>@Model[i - 1].author.name</td>
+                                            <td>
+                                                @if (Model[i - 1].subGenresToProducts.Count > 0)
+                                                {
+                                                    foreach (var sg in Model[i - 1].subGenresToProducts)
+                                                    {
+                                                        <span>@sg.SubGenre.subGenreName</span>
+                                                    }
+                                                    
+                                                    
+                                                    @*@Model[i - 1].subGenresToProducts.name*@
+                                                }
+                                            </td>
+                                            <td>
+                                            @foreach (var ins in Model[i - 1].instrumentsToProducts)
+                                            {
+                                                <span>@ins.instrument.name</span>
+                                            }
+                                            </td>
+                                            @*@Model[i - 1].instrument.name</td>*@
+                                            <td>@Model[i - 1].price</td>
+                                            <td>@Model[i - 1].dateUpload</td>
+                                            <td><input type="checkbox" @(Model[i - 1].isDisplayed? "checked=\"checked\"":"")  disabled="disabled"/></td>
+                                            <td>@Model[i-1].orderBy</td>
+                                            <td>
+                                            @if (Model[i-1].isDisplayed==true)
+                                            {
+                                                <a class=""  title="View" href="@Url.Action("Product", "Admin", new { id = Model[i - 1].prodID })">Edit</a>
+                                                <a class="" title="Delete" href="@Url.Action("DeleteProduct", "Admin", new { id = Model[i - 1].prodID })" onclick="return confirm('Are you sure?')">Delete</a>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    <a class=""  title="View" href="@Url.Action("Product", "Admin", new { id = Model[i - 1].prodID })">Edit</a>
+                                                </span>
+                                            }
+                                                        
+                                            </td>
+                                        </tr>
+                                    }
+                                        
+                                    </tbody>
+                                </table>
+                            </section>
+                        </section>
+                    </section>
+                </section>

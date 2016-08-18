@@ -1,0 +1,52 @@
+﻿@using UpDown.Models
+@model List<tag>
+
+@{
+    ViewBag.Title = "Tags";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="main-content">
+                    <section class="row">
+                        <section class="col-md-12 panel products-wrap bgc-wrap">
+                            <section class="panel-header">
+                                <h3 class="header-title"></h3>
+                            </section>
+                            <section class="panel-body">
+                                <section class="action-bar">
+                                    <button class="btn btn-theme btn-add-new-user">
+                                        <a href="@Url.Action("AddTag", "Admin")">
+                                            <i class="fa fa-plus"></i> Add New
+                                        </a>
+                                    </button>
+                                </section>
+                                <table class="table recent-activities-table order-column" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Url</th>   
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (tag item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.tagId</td>
+                                                <td>@item.name</td>
+                                                <td>@item.url</td>
+                                                <td>
+                                                    <a class="fa fa-eye"  title="View" href="@Url.Action("UpdateTag", "Admin", new {id=item.tagId })"></a>
+                                                    <a class="fa fa-trash-o" title="Delete" href="@Url.Action("DeleteTag", "Admin", new {id=item.tagId })" onclick="return confirm('Are you sure?')"></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                        
+                                    </tbody>
+                                </table>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+

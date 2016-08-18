@@ -175,10 +175,6 @@
     <Compile Include="Repository\UsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\UpDownDB.mdf" />
-    <Content Include="App_Data\UpDownDB_log.ldf">
-      <DependentUpon>UpDownDB.mdf</DependentUpon>
-    </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
@@ -455,6 +451,7 @@
     <Content Include="Views\Home\Support.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Files\demo\" />
     <Folder Include="images\Products\" />
     <Folder Include="images\users\" />

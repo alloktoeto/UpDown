@@ -8,7 +8,7 @@
         @foreach (var image in Model)
         {
             <div class="item">
-                <a href="@image.url" target="_blank">
+                <a href="@(String.IsNullOrWhiteSpace(image.url) ? "javascript:void(0);" : image.url)" target="_blank">
                     <figure>
                         <img src="@Url.Content("~/images/slider/" + image.name)" alt="@image.alt"/>
                         <figcaption>@image.text</figcaption>

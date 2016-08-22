@@ -176,6 +176,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Dapper.dll" />
+    <Content Include="bin\Dapper.xml" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
@@ -192,6 +194,8 @@
     <Content Include="bin\System.Web.WebPages.Deployment.dll" />
     <Content Include="bin\System.Web.WebPages.dll" />
     <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\UpDown.dll" />
+    <Content Include="bin\UpDown.pdb" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\css\admin\default.css" />
     <Content Include="Content\css\default-uc.css" />

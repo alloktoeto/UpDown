@@ -3,5 +3,4 @@ C:\Users\Gelman\Desktop\UpDown\UpDown\bin\UpDown.dll
 C:\Users\Gelman\Desktop\UpDown\UpDown\bin\UpDown.pdb
 C:\Users\Gelman\Desktop\UpDown\UpDown\obj\Debug\UpDown.dll
 C:\Users\Gelman\Desktop\UpDown\UpDown\obj\Debug\UpDown.pdb
-C:\Users\Gelman\Desktop\UpDown\UpDown\bin\Dapper.dll
 C:\Users\Gelman\Desktop\UpDown\UpDown\bin\Dapper.xml

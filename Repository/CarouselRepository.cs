@@ -31,6 +31,10 @@ namespace UpDown.Repository
 
         public void AddCategory(carusel_images obj, string image)
         {
+            if (String.IsNullOrWhiteSpace(obj.url) || obj==null)
+            {
+                obj.url = "";
+            }
             _db.carusel_images.AddObject(obj);
             _db.SaveChanges();
         }
@@ -43,36 +47,15 @@ namespace UpDown.Repository
         public void UpdateCategory(carusel_images obj, string image)
         {
             carusel_images old = GetCategory(obj.imageID);
+            if (String.IsNullOrWhiteSpace(obj.url) || obj == null)
+            {
+                obj.url = "";
+            }
             old.name = image;
             old.url = obj.url;
             old.text = obj.text;
             old.alt = obj.alt;
             _db.SaveChanges();
         }
-
-        //public List<carusel_images> GetCaruselImages()
-        //{
-        //    return _db.carusel_images.ToList();
-        //}
-
-        //public carusel_images GetCaruselImage(int id)
-        //{
-        //    return _db.carusel_images.FirstOrDefault(x=>x.imageID==id);
-        //}
-
-        //public void UpdateCaruselImage(carusel_images image)
-        //{
-        //    return _db.carusel_images.FirstOrDefault(x => x.imageID == id);
-        //}
-
-        //public void AddCaruselImage(carusel_images image)
-        //{
-        //    return _db.carusel_images.FirstOrDefault(x => x.imageID == id);
-        //}
-
-        //public void DeleteCaruselImage(carusel_images image)
-        //{
-        //    return _db.carusel_images.FirstOrDefault(x => x.imageID == id);
-        //}
     }
 }

@@ -16,9 +16,9 @@ namespace UpDown
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                //defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
 
-                //defaults: new { controller = "Admin", action = "Products", id = UrlParameter.Optional }
+                defaults: new { controller = "Admin", action = "Products", id = UrlParameter.Optional }
             );
         }
     }

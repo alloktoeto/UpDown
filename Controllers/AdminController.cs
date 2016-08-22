@@ -793,10 +793,11 @@ namespace UpDown.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateCarouselImage(carusel_images model, HttpPostedFileBase image)
+        public ActionResult UpdateCarouselImage(carusel_images model, HttpPostedFileBase image, string oldImage)
         {
             CarouselRepository cr = new CarouselRepository();
             string imageStr = "";
+
             if (image!=null)
             {
                 imageStr = image.FileName;
@@ -805,7 +806,7 @@ namespace UpDown.Controllers
             }
             else
             {
-                imageStr = model.name;
+                imageStr = oldImage;
             }
 
             cr.UpdateCategory(model, imageStr);

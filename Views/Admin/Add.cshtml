@@ -13,27 +13,6 @@
             $('#frm').submit();
         });
 
-//        $('#genres').change(function () {
-//            var genreId = Number($(this).find('option:selected').val());
-//            $.ajax({
-//                url: '@Url.Action("GetSubGenres", "Admin")',
-//                type: 'POST',
-//                //async: true,
-//                data: { genreId: genreId },
-//                dataType: "text",
-//                beforeSend: function () {
-//                    //loader(true);
-//                },
-//                success: function (data) {
-//                    $('#subResult').html(data);
-//                    //loader(false);
-
-//                },
-//                error: function () {
-//                }
-//            });
-
-
         $("#instruments").dropdownchecklist({
             emptyText: '-- Select Instruments',
             icon: {

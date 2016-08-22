@@ -1,18 +1,27 @@
 ﻿@model UpDown.Models.carusel_images
 
 @{
-    ViewBag.Title = "UpdateCarouselImage";
+    ViewBag.Title = "Update Carousel Image";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>UpdateCarouselImage</h2>
+<style>
+    .separator
+    {
+        height: 20px;
+        }
+    input[type="text"]
+    {
+        width: 400px;
+        }
+</style>
 
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
+<h2>Carusel images</h2>
 
+@using (Html.BeginForm("UpdateCarouselImage", "Admin", FormMethod.Post, new { id = "frm", role = "form", enctype = "multipart/form-data" }))
+{
     <fieldset>
-        <legend>carusel_images</legend>
-
+        <legend>Carusel images - Edit</legend>
         @Html.HiddenFor(model => model.imageID)
 
         <div class="editor-label">
@@ -20,43 +29,54 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.url)
-            @Html.ValidationMessageFor(model => model.url)
         </div>
-
+        <div class="separator"></div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.name)
+        <label>Image</label>
+            
         </div>
+        @if (String.IsNullOrWhiteSpace(Model.name))
+        {
+            <input type="hidden" name="oldImage" value="@Model.name" />
+            <div class="editor-field" style="width: 120px;">
+               <img src="@Url.Content("~/images/slider/" + Model.name)" />
+            </div>
+        }
+        
         <div class="editor-field">
-            @Html.EditorFor(model => model.name)
-            @Html.ValidationMessageFor(model => model.name)
+            <input type="file" name="image" />
         </div>
-
+        <div class="separator"></div>
         <div class="editor-label">
             @Html.LabelFor(model => model.alt)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.alt)
-            @Html.ValidationMessageFor(model => model.alt)
         </div>
-
+        <div class="separator"></div>
         <div class="editor-label">
             @Html.LabelFor(model => model.text)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.text)
-            @Html.ValidationMessageFor(model => model.text)
         </div>
-
+        <div class="separator"></div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.orderBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.orderBy)
+        </div>
+        <div class="separator"></div>
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+

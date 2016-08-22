@@ -35,6 +35,7 @@ namespace UpDown.Repository
             {
                 obj.url = "";
             }
+            obj.name = image;
             _db.carusel_images.AddObject(obj);
             _db.SaveChanges();
         }
@@ -51,6 +52,7 @@ namespace UpDown.Repository
             {
                 obj.url = "";
             }
+            
             old.name = image;
             old.url = obj.url;
             old.text = obj.text;

@@ -89,6 +89,7 @@ namespace UpDown.Controllers
         {
             ProductsRepository productDataModel = new ProductsRepository();
             productDataModel.UpdateProduct(model, instruments, image.FileName);
+            appCache.DeleteProducts();
             return RedirectToAction("UpdateFormats", new { productId = model.prodID });
         }
 
@@ -96,7 +97,7 @@ namespace UpDown.Controllers
         {
             ProductsRepository pd = new ProductsRepository();
             pd.RemoveProduct(id);
-            System.Web.HttpRuntime.Cache["products"] = null;
+            appCache.DeleteProducts();
             return RedirectToAction("Products", "Admin");
         }
 
@@ -157,7 +158,7 @@ namespace UpDown.Controllers
 
             var pathDemo = Path.Combine(Server.MapPath("~/Files/demo"), demo.FileName);
             demo.SaveAs(pathDemo);
-
+            appCache.DeleteProducts();
             return RedirectToAction("ProductGenres", new { productId = product.prodID });
         }
 
@@ -181,7 +182,7 @@ namespace UpDown.Controllers
             }
 
             productDataModel.UpdateProduct(model, instruments, image);
-            ProductsNull();
+            appCache.DeleteProducts();
             return RedirectToAction("ProductGenresEdit", new { productId = model.prodID });
             //return RedirectToAction("AddFormats", new { productId = model.prodID });
         }
@@ -222,6 +223,7 @@ namespace UpDown.Controllers
 
         public ActionResult ProductsNull()
         {
+            appCache.DeleteProducts();
             if (System.Web.HttpRuntime.Cache["products"]!=null)
             {
                 System.Web.HttpRuntime.Cache.Remove("products"); //["products"] = null;
@@ -419,7 +421,7 @@ namespace UpDown.Controllers
         {
             EffectReposirory em = new EffectReposirory();
             em.AddCategory(effect);
-            System.Web.HttpContext.Current.Application["effects"] = null;
+            appCache.DeleteEffects();
             return RedirectToAction("Effects");
         }
 
@@ -461,7 +463,7 @@ namespace UpDown.Controllers
         {
             InstrumentsRepository im = new InstrumentsRepository();
             im.AddCategory(instrument);
-            System.Web.HttpContext.Current.Application["instruments"] = null;
+            appCache.DeleteInstruments();
             return View();
         }
         #endregion
@@ -492,8 +494,8 @@ namespace UpDown.Controllers
         {
             GenresRepository gm = new GenresRepository();
             gm.AddCategory(genre);
-            
-            System.Web.HttpContext.Current.Application["genres"] = null;
+
+            appCache.DeleteGenres();
 
             return RedirectToAction("Genres");
         }
@@ -516,7 +518,7 @@ namespace UpDown.Controllers
         {
             GenresRepository gm = new GenresRepository();
             gm.UpdateCategory(genre);
-            System.Web.HttpContext.Current.Application["genres"] = null;
+            appCache.DeleteGenres();
             return RedirectToAction("Genres");
         }
 
@@ -553,7 +555,7 @@ namespace UpDown.Controllers
         {
             GenresRepository gr = new GenresRepository();
             gr.AddSubGenre(subGenre);
-            System.Web.HttpContext.Current.Application["genres"] = null;
+            appCache.DeleteGenres();
             return RedirectToAction("SubGenres", new { genreId = subGenre.subGenreGenreId });
         }
 
@@ -574,7 +576,7 @@ namespace UpDown.Controllers
         {
             GenresRepository gr = new GenresRepository();
             gr.UpdateSubGenre(subGenre);
-            System.Web.HttpContext.Current.Application["genres"] = null;
+            appCache.DeleteGenres();
             return RedirectToAction("SubGenres", new { genreId = subGenre.subGenreGenreId });
         }
 
@@ -583,7 +585,7 @@ namespace UpDown.Controllers
         {
             GenresRepository gr = new GenresRepository();
             gr.DeleteGenre(genreId);
-            System.Web.HttpContext.Current.Application["genres"] = null;
+            appCache.DeleteGenres();
             return RedirectToAction("Genres");
         }
 
@@ -591,7 +593,7 @@ namespace UpDown.Controllers
         {
             GenresRepository gr = new GenresRepository();
             gr.DeleteSubGenre(subId);
-            System.Web.HttpContext.Current.Application["genres"] = null;
+            appCache.DeleteGenres();
             return RedirectToAction("Genres");
         }
 
@@ -623,7 +625,7 @@ namespace UpDown.Controllers
         {
             FormatsRepository fm = new FormatsRepository();
             fm.AddCategory(format);
-            System.Web.HttpContext.Current.Application["formats"] = null;
+            appCache.DeleteFormats();
             return RedirectToAction("Formats");
         }
         #endregion
@@ -693,7 +695,7 @@ namespace UpDown.Controllers
         {
             TagsRepository td = new TagsRepository();
             td.AddCategory(tag);
-            System.Web.HttpContext.Current.Application["tags"] = null;
+            appCache.DeleteTags();
             return RedirectToAction("Tags");
         }
 
@@ -713,7 +715,7 @@ namespace UpDown.Controllers
         {
             TagsRepository tm = new TagsRepository();
             tm.UpdateCategory(tag);
-            System.Web.HttpContext.Current.Application["tags"] = null;
+            appCache.DeleteTags();
             return RedirectToAction("Tags");
         }
 
@@ -722,7 +724,7 @@ namespace UpDown.Controllers
             TagsRepository tm = new TagsRepository();
             var tag = tm.GetCategory(id);
             tm.Delete(tag);
-            System.Web.HttpContext.Current.Application["tags"] = null;
+            appCache.DeleteTags();
             return RedirectToAction("Tags");
         }
         #endregion
@@ -777,7 +779,7 @@ namespace UpDown.Controllers
             cr.AddCategory(model, image.FileName);
             var path = Path.Combine(Server.MapPath("~/images/slider"), image.FileName);
             image.SaveAs(path);
-            System.Web.HttpContext.Current.Application["carousel"] = null;
+            appCache.DeleteTCarouselImages();
             return RedirectToAction("CarouselImages");
         }
 
@@ -811,7 +813,7 @@ namespace UpDown.Controllers
 
             cr.UpdateCategory(model, imageStr);
 
-            System.Web.HttpContext.Current.Application["carousel"] = null;
+            appCache.DeleteTCarouselImages();
             return RedirectToAction("CarouselImages");
         }
 
@@ -820,7 +822,7 @@ namespace UpDown.Controllers
             CarouselRepository cr = new CarouselRepository();
             var image = cr.GetCategory(id);
             cr.Delete(image);
-            System.Web.HttpContext.Current.Application["carousel"] = null;
+            appCache.DeleteTCarouselImages();
             return RedirectToAction("CarouselImages");
         }
         

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using UpDown.Models;
 using UpDown.Repository;
 using System.Web.Script.Serialization;
+using System.Web.UI;
 
 namespace UpDown.Controllers
 {
@@ -48,23 +49,13 @@ namespace UpDown.Controllers
 
         public ActionResult Search(string search)
         {
-            //ProductsRepository pm = new ProductsRepository();
             var products = GetProducts(); // pm.GetProducts();
-
-            //InstrumentsRepository im = new InstrumentsRepository();
-            //GenresRepository gm = new GenresRepository();
-            //FormatsRepository fm = new FormatsRepository();
-            //EffectReposirory em = new EffectReposirory();
-
             ViewBag.Instruments = GetInstruments(); // im.GetCategories();
             ViewBag.Formats = GetFormats();// fm.GetCategories();
-
+            
             var genres = GetGenres();// gm.GetCategories();
             ViewBag.Genres = genres;
             ViewBag.Effects = GetEffects();// em.GetCategories();
-
-
-            //products = products.Where(x => x.name.ToLower().Contains(search.ToLower())).ToList();
 
             products = products.Where(x => x.name.ToLower().Contains(search.ToLower()) 
                                         || x.formatsToProducts.Select(y=>y.format.name.ToLower()).Contains(search.ToLower())
@@ -73,11 +64,10 @@ namespace UpDown.Controllers
                                         //|| x.sound.name.ToLower().Contains(search.ToLower())
                                         //|| x.effect.name.ToLower().Contains(search.ToLower())
                                         ).ToList();
-
-            //products = products.Where()
             return View(products);
         }
 
+        [OutputCache(Duration = 600)]
         [ChildActionOnly]
         public ActionResult CarouselPartial()
         {
@@ -85,6 +75,7 @@ namespace UpDown.Controllers
             return PartialView(images);
         }
 
+        [OutputCache(Duration = 600)]
         [ChildActionOnly]
         public ActionResult FooterPartial()
         {
@@ -118,6 +109,7 @@ namespace UpDown.Controllers
             return PartialView();
         }
 
+       // [OutputCache(Location = OutputCacheLocation.Server, Duration = 60)]
         public ActionResult Index()
         {
 

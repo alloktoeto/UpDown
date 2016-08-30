@@ -120,6 +120,7 @@
     <Property Name="name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="alt" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
     <Property Name="text" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Type="Int32" Name="orderBy" />
   </EntityType>
   <EntityType Name="country">
     <Key>
@@ -291,6 +292,7 @@
     <NavigationProperty Name="product_statuses" Relationship="DB_9FCBDB_UpDownDBModel.FK_products_product_statuses" FromRole="products" ToRole="product_statuses" />
     <NavigationProperty Name="sound" Relationship="DB_9FCBDB_UpDownDBModel.FK_products_sounds" FromRole="products" ToRole="sounds" />
     <NavigationProperty Name="subGenresToProducts" Relationship="DB_9FCBDB_UpDownDBModel.FK_subGenresToProducts_products" FromRole="products" ToRole="subGenresToProducts" />
+    <Property Type="String" Name="description_short" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="sound">
     <Key>

@@ -11,18 +11,35 @@ namespace UpDown.Controllers
 {
     public class BaseController : Controller
     {
-        
+        protected AppCache appCache;
+        public BaseController()
+        {
+            appCache = new AppCache();
+        }
+
         protected List<product> GetProducts()
         {
 
-            List<product> products = null;// System.Web.HttpRuntime.Cache["products"] as List<product>;
+            //List<product> products = System.Web.HttpRuntime.Cache["products"] as List<product>;
+            List<product> products = appCache.GetProducts();
+
             if (products == null)
             {
                 ProductsRepository prodModel = new ProductsRepository();
                 products = prodModel.GetProducts();
-                System.Web.HttpRuntime.Cache["products"] = products;
+                appCache.AddProducts(products);
             }
+
             return products;
+
+
+            //if (products == null)
+            //{
+            //    ProductsRepository prodModel = new ProductsRepository();
+            //    products = prodModel.GetProducts();
+            //    System.Web.HttpRuntime.Cache["products"] = products;
+            //}
+            
             //if (System.Web.HttpContext.Current.Application["products"] != null)
             //{
             //    var products = System.Web.HttpContext.Current.Application["products"] as List<product>;
@@ -40,98 +57,74 @@ namespace UpDown.Controllers
 
         protected List<format> GetFormats()
         {
-            List<format> formats = System.Web.HttpRuntime.Cache["formats"] as List<format>;
+            List<format> formats = appCache.GetFormats();
             if (formats == null)
             {
                 FormatsRepository fRepository = new FormatsRepository();
                 formats = fRepository.GetCategories();
-                System.Web.HttpRuntime.Cache["formats"] = formats;
+                appCache.AddFormats(formats);
             }
             return formats;
         }
 
         protected List<effect> GetEffects()
         {
-            if (System.Web.HttpContext.Current.Application["effects"] != null)
+            List<effect> effects = appCache.GetEffects();
+            if (effects == null)
             {
-                var effects = System.Web.HttpContext.Current.Application["effects"] as List<effect>;
-                return effects;
+                EffectReposirory effectsModel = new EffectReposirory();
+                effects = effectsModel.GetCategories();
+                appCache.AddEffects(effects);
             }
-            else
-            {
-                var effects = new EffectReposirory().GetCategories();
-                System.Web.HttpContext.Current.Application["effects"] = effects;
-                return effects;
-            }
+            return effects;
         }
 
         protected List<carusel_images> GetCarouselImages()
         {
-            if (System.Web.HttpContext.Current.Application["carousel"] != null)
+            List<carusel_images> images = appCache.GetCarouselImages();
+            if (images == null)
             {
-                var caruselImages = System.Web.HttpContext.Current.Application["carousel"] as List<carusel_images>;
-                return caruselImages;
+                CarouselRepository carouselModel = new CarouselRepository();
+                images = carouselModel.GetCategories();
+                appCache.AddCarouselImages(images);
             }
-            else
-            {
-                var caruselImages = new CarouselRepository().GetCategories();
-                System.Web.HttpContext.Current.Application["carousel"] = caruselImages;
-                return caruselImages;
-            }
+            return images;
         }
 
         protected List<genre> GetGenres()
         {
-            if (System.Web.HttpContext.Current.Application["genres"] != null)
+            List<genre> genres = appCache.GetGenres();
+            if (genres == null)
             {
-                var genres = System.Web.HttpContext.Current.Application["genres"] as List<genre>;
-                return genres;
+                GenresRepository genreModel = new GenresRepository();
+                genres = genreModel.GetCategories();
+                appCache.AddGenres(genres);
             }
-            else
-            {
-                var genres = new GenresRepository().GetCategories();
-                System.Web.HttpContext.Current.Application["genres"] = genres;
-                return genres;
-            }
+            return genres;
         }
 
         protected List<instrument> GetInstruments()
         {
-            if (System.Web.HttpContext.Current.Application["instruments"] != null)
+            List<instrument> instruments = appCache.GetInstruments();
+            if (instruments == null)
             {
-                var instruments = System.Web.HttpContext.Current.Application["instruments"] as List<instrument>;
-                return instruments;
+                InstrumentsRepository instrumentModel = new InstrumentsRepository();
+                instruments = instrumentModel.GetCategories();
+                appCache.AddInstruments(instruments);
             }
-            else
-            {
-                var instruments = new InstrumentsRepository().GetCategories();
-                System.Web.HttpContext.Current.Application["instruments"] = instruments;
-                return instruments;
-            }
+            return instruments;
         }
-
 
         protected List<tag> GetTags()
         {
-            List<tag> tags = System.Web.HttpRuntime.Cache["tags"] as List<tag>;
+            List<tag> tags = appCache.GetTags();
             if (tags == null)
             {
-                TagsRepository tRepository = new TagsRepository();
-                tags = tRepository.GetCategories();
-                System.Web.HttpRuntime.Cache["tags"] = tags;
+                TagsRepository tagsModel = new TagsRepository();
+                tags = tagsModel.GetCategories();
+                appCache.AddTags(tags);
             }
             return tags;
-            //if (System.Web.HttpContext.Current.Application["tags"] != null)
-            //{
-            //    var tags = System.Web.HttpContext.Current.Application["tags"] as List<tag>;
-            //    return tags;
-            //}
-            //else
-            //{
-            //    var tags = new TagsRepository().GetCategories();
-            //    System.Web.HttpContext.Current.Application["tags"] = tags;
-            //    return tags;
-            //}
         }
 
 

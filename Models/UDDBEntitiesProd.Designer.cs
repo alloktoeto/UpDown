@@ -1163,6 +1163,30 @@ namespace UpDown.Models
         private global::System.String _text;
         partial void OntextChanging(global::System.String value);
         partial void OntextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> orderBy
+        {
+            get
+            {
+                return _orderBy;
+            }
+            set
+            {
+                OnorderByChanging(value);
+                ReportPropertyChanging("orderBy");
+                _orderBy = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("orderBy");
+                OnorderByChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _orderBy;
+        partial void OnorderByChanging(Nullable<global::System.Int32> value);
+        partial void OnorderByChanged();
 
         #endregion
 
@@ -3817,6 +3841,30 @@ namespace UpDown.Models
         private Nullable<global::System.Int32> _orderBy;
         partial void OnorderByChanging(Nullable<global::System.Int32> value);
         partial void OnorderByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String description_short
+        {
+            get
+            {
+                return _description_short;
+            }
+            set
+            {
+                Ondescription_shortChanging(value);
+                ReportPropertyChanging("description_short");
+                _description_short = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("description_short");
+                Ondescription_shortChanged();
+            }
+        }
+        private global::System.String _description_short;
+        partial void Ondescription_shortChanging(global::System.String value);
+        partial void Ondescription_shortChanged();
 
         #endregion
 

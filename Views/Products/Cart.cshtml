@@ -60,8 +60,8 @@ else
                             <section class="body-page-content">
 
                                 <!-- /cart table -->
-                                <div class="row">
-                                    <table class="cart-table">
+                                
+                                    <table class="table cart-table">
                                         <thead class="hidden-xs hidden-sm">
                                             <tr>
                                                 <th>Product</th>
@@ -76,46 +76,49 @@ else
                                             {
                                                 <tr class="product-item">
                                                     <td class="product">
-                                                        <img class="prod-img" src="@Url.Content("~/images/Products/" + prod.prod_image)" />
-                                                        
-                                                        <div style="display:inline-block;"> 
-                                                            <h4 class="prod-title col-xs-pull-4">
-                                                            <a href="@Url.Action("Product", "Products", new { id = prod.prodID.ToString() })" title="View Product Page">@prod.author.name - @prod.name</a></h4>
-
-                                                            <!-- desktop layout -->
-                                                            <!-- <p class="hidden-xs hidden-sm">@Html.Raw(prod.description)</p> -->
-                                                            <!-- /desktop layout -->
-
-                                                            <!-- mobile layout -->
-                                                            <div class="mobile-layout hidden-md hidden-lg">
-                                                                <p>
-                                                                    <strong>Price: </strong><span>$</span>@prod.price
-                                                                </p>
-                                                                <p>
-                                                                    <strong class="hidden-md hidden-lg">Discount: </strong>
-                                                                    @if (prod.price_New!=null)
-                                                                    {
-                                                                        <span>$</span>@(prod.price - prod.price_New)
-                                                                    }
-                                                                </p>
-                                                                <p>
-                                                                    <strong class="hidden-md hidden-lg">Total: </strong><span>$</span>@(prod.price_New != null ? prod.price_New : prod.price)
-                                                                </p>
-
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-xs-12">
+                                                                <img class="prod-img img-responsive" src="@Url.Content("~/images/Products/" + prod.prod_image)" />
                                                             </div>
-                                                            <!-- /mobile layout -->
+                                                            <div class="col-md-6 col-xs-12">
+                                                                <h4 class="prod-title">
+                                                                    <a href="@Url.Action("Product", "Products", new { id = prod.prodID.ToString() })" title="View Product Page">@prod.author.name - @prod.name</a>
+                                                                </h4>
 
-                                                            <div class="hidden-xs hidden-sm format-select-wrap">
-                                                                <h4>Please select the formats to buy</h4>
+                                                                <!-- desktop layout -->
+                                                                <!-- <p class="hidden-xs hidden-sm">@Html.Raw(prod.description)</p> -->
+                                                                <!-- /desktop layout -->
+                                                                <!-- mobile layout -->
+                                                                <div class="mobile-layout hidden-md hidden-lg">
+                                                                    <p>
+                                                                        <strong>Price: </strong><span>$</span>@prod.price
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong class="hidden-md hidden-lg">Discount: </strong>
+                                                                        @if (prod.price_New != null)
+                                                                        {
+                                                                            <span>$</span>@(prod.price - prod.price_New)
+                                                                        }
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong class="hidden-md hidden-lg">Total: </strong><span>$</span>@(prod.price_New != null ? prod.price_New : prod.price)
+                                                                    </p>
+
+                                                                </div>
+                                                                <!-- /mobile layout -->
+
+
+                                                                <div class="col-md-12 col-xs-12 hidden-xs hidden-sm format-select-wrap">
+                                                                    <h4>Please select the formats to buy</h4>
                                                                     <select name="@prod.prodID" class="format-select desktop" multiple="multiple" prc="@(prod.price_New==null ? prod.price : prod.price_New)" onchange="priceItemsDisplay();">
                                                                         @foreach (formatsToProduct f in prod.formatsToProducts)
                                                                         {
-                                                                            <option value="@f.format.formatID" @(prod.FormatsSelectedList!=null && prod.FormatsSelectedList.Contains(f.format.formatID) ? "selected='selected'" : "")>@f.format.name</option>
+                                                                            <option value="@f.format.formatID" @(prod.FormatsSelectedList != null && prod.FormatsSelectedList.Contains(f.format.formatID) ? "selected='selected'" : "")>@f.format.name</option>
                                                                         }
                                                                     </select>
                                                                     <span class="validateSelect">*</span>
+                                                                </div>
                                                             </div>
-                                                            
                                                         </div>
                                                     </td>
                                                     <td class="hidden-md hidden-lg" style="display: initial;">
@@ -162,7 +165,7 @@ else
                                         </tbody>
                                         
                                     </table>
-                                </div>
+                                
                                 <!-- /cart table -->
 
                             </section>

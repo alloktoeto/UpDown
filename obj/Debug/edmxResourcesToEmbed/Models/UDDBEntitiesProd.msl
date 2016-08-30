@@ -26,6 +26,7 @@
     <EntitySetMapping Name="carusel_images">
       <EntityTypeMapping TypeName="DB_9FCBDB_UpDownDBModel.carusel_images">
         <MappingFragment StoreEntitySet="carusel_images">
+          <ScalarProperty Name="orderBy" ColumnName="orderBy" />
           <ScalarProperty Name="imageID" ColumnName="imageID" />
           <ScalarProperty Name="url" ColumnName="url" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -172,6 +173,7 @@
     <EntitySetMapping Name="products">
       <EntityTypeMapping TypeName="DB_9FCBDB_UpDownDBModel.product">
         <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="description_short" ColumnName="description_short" />
           <ScalarProperty Name="prodID" ColumnName="prodID" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="authorID" ColumnName="authorID" />

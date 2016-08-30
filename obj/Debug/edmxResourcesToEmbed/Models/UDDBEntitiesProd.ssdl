@@ -115,10 +115,11 @@
       <PropertyRef Name="imageID" />
     </Key>
     <Property Name="imageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="url" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="name" Type="nvarchar" MaxLength="50" />
-    <Property Name="alt" Type="nvarchar" MaxLength="50" />
-    <Property Name="text" Type="nvarchar" MaxLength="50" />
+    <Property Name="url" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="name" Type="nvarchar" MaxLength="200" />
+    <Property Name="alt" Type="nvarchar" MaxLength="200" />
+    <Property Name="text" Type="nvarchar" MaxLength="200" />
+    <Property Name="orderBy" Type="int" />
   </EntityType>
   <EntityType Name="countries">
     <Key>
@@ -265,6 +266,7 @@
     <Property Name="duration" Type="int" />
     <Property Name="isDisplayed" Type="bit" Nullable="false" />
     <Property Name="orderBy" Type="int" />
+    <Property Name="description_short" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="sounds">
     <Key>
@@ -533,11 +535,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-      warning 6013: The table/view 'DB_9FCBDB_UpDownDB.dbo.GlobalParametres' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="GlobalParametres">
-        <Property Name="glob_name" Type="nvarchar" MaxLength="50" />
-        <Property Name="glob_value" Type="nvarchar" MaxLength="50" />
-      </EntityType>-->
 </Schema>

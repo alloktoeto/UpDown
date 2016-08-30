@@ -46,6 +46,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -143,16 +144,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AppCache.cs" />
     <Compile Include="Models\product.cs" />
     <Compile Include="Models\ProductGenresUpdateModel.cs" />
     <Compile Include="Models\StringCipher.cs" />
     <Compile Include="Models\GetDataPayPal.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
-    <Compile Include="Models\UDDBEntuty.Designer.cs">
+    <Compile Include="Models\UDDBEntitiesProd.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>UDDBEntuty.edmx</DependentUpon>
+      <DependentUpon>UDDBEntitiesProd.edmx</DependentUpon>
     </Compile>
     <Compile Include="Repository\AuthorRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
@@ -383,9 +385,9 @@
     <None Include="libs\font-awesome\fonts\fontawesome-webfont.woff" />
     <None Include="libs\font-awesome\fonts\fontawesome-webfont.woff2" />
     <None Include="libs\font-awesome\fonts\FontAwesome.otf" />
-    <EntityDeploy Include="Models\UDDBEntuty.edmx">
+    <EntityDeploy Include="Models\UDDBEntitiesProd.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UDDBEntuty.Designer.cs</LastGenOutput>
+      <LastGenOutput>UDDBEntitiesProd.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="obj\Debug\build.force" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
